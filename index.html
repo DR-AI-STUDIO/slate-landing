@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>슬레이트(SlateSync) — 촬영 현장을 잇는 협업 플랫폼</title>
+<style>
+  :root{
+    --bg:#0d0b08; --panel:#17130f; --panel2:#1d1712;
+    --line:rgba(251,191,36,.14); --line2:rgba(245,237,224,.10);
+    --text:#f5ede0; --muted:rgba(245,237,224,.62); --muted2:rgba(245,237,224,.42);
+    --gold:#fbbf24; --gold2:#e0a92a; --goldsoft:rgba(251,191,36,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);
+    font-family:'Pretendard','Malgun Gothic',system-ui,-apple-system,'Segoe UI',sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:inherit;text-decoration:none}
+  .gold{color:var(--gold)}
+  .btn{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:800;font-size:15px;
+    background:linear-gradient(180deg,var(--gold),var(--gold2));color:#1d1608;transition:.2s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(251,191,36,.25)}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--goldsoft);box-shadow:none}
+
+  /* HERO */
+  header.hero{position:relative;padding:26px 0 96px;text-align:center;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0 0 auto 0;height:640px;pointer-events:none;
+    background:radial-gradient(60% 80% at 50% -8%,rgba(251,191,36,.16),transparent 68%)}
+  .nav{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.5px}
+  .brand img{width:38px;height:38px;border-radius:11px}
+  .brand .wm{font-size:20px}
+  .hero-in{position:relative;z-index:2;padding-top:70px}
+  .badge{display:inline-block;font-size:12.5px;font-weight:700;color:var(--gold);
+    border:1px solid var(--line);background:var(--goldsoft);padding:7px 14px;border-radius:999px;margin-bottom:26px}
+  h1{font-size:clamp(30px,5.4vw,54px);line-height:1.18;font-weight:900;letter-spacing:-.5px}
+  h1 .hl{background:linear-gradient(180deg,#ffe9a8,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{margin:22px auto 0;max-width:620px;font-size:clamp(15px,2.3vw,18px);color:var(--muted)}
+  .cta{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .heronote{margin-top:16px;font-size:12.5px;color:var(--muted2)}
+
+  section{padding:74px 0}
+  .eyebrow{color:var(--gold);font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+  h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.4px;margin:10px 0 8px}
+  .lead{color:var(--muted);max-width:640px;font-size:16px}
+  .center{text-align:center}
+  .center .lead{margin:0 auto}
+
+  /* PROBLEM */
+  .prob{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+  .prob .card{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:20px 22px}
+  .prob .q{color:#ff9d8a;font-weight:800;font-size:14px;margin-bottom:6px}
+  .prob .a{color:var(--text);font-weight:600}
+  .prob .a b{color:var(--gold)}
+
+  /* FEATURES */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+  .feat{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);
+    border-radius:18px;padding:24px;transition:.2s}
+  .feat:hover{border-color:var(--line);transform:translateY(-3px)}
+  .feat .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:23px;
+    background:var(--goldsoft);border:1px solid var(--line);margin-bottom:14px}
+  .feat h3{font-size:17px;font-weight:800;margin-bottom:7px}
+  .feat p{color:var(--muted);font-size:14px}
+
+  /* HOW */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px;counter-reset:s}
+  .step{background:var(--panel);border:1px solid var(--line2);border-radius:16px;padding:22px 18px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:18px;
+    width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;
+    background:linear-gradient(180deg,var(--gold),var(--gold2));color:#1d1608}
+  .step h4{margin:8px 0 5px;font-size:15.5px;font-weight:800}
+  .step p{color:var(--muted);font-size:13.5px}
+
+  /* HIGHLIGHT band */
+  .band{background:linear-gradient(180deg,#14100b,#0f0c08);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+  .bandgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;text-align:center}
+  .bandgrid .n{font-size:clamp(22px,3vw,30px);font-weight:900;color:var(--gold)}
+  .bandgrid .l{color:var(--muted);font-size:14px;margin-top:4px}
+
+  /* PRICING */
+  .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}
+  .plan{background:var(--panel);border:1px solid var(--line2);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column}
+  .plan.best{border-color:var(--gold);box-shadow:0 0 0 1px var(--goldsoft) inset}
+  .plan .tag{font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1px}
+  .plan h3{font-size:19px;font-weight:900;margin:6px 0 8px}
+  .plan p{color:var(--muted);font-size:13.5px;flex:1}
+  .plan .who{margin-top:12px;color:var(--muted2);font-size:12.5px;border-top:1px solid var(--line2);padding-top:10px}
+
+  /* CTA */
+  .final{text-align:center;background:radial-gradient(70% 120% at 50% 0%,rgba(251,191,36,.10),transparent 60%)}
+  .final h2{margin-bottom:14px}
+  .taglines{margin-top:26px;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:15px}
+  .taglines b{color:var(--text)}
+  footer{border-top:1px solid var(--line2);padding:30px 0;color:var(--muted2);font-size:13px;text-align:center}
+
+  @media(max-width:860px){
+    .grid,.steps,.plans{grid-template-columns:1fr 1fr}
+    .prob{grid-template-columns:1fr}
+    .bandgrid{grid-template-columns:1fr;gap:18px}
+  }
+  @media(max-width:520px){ .grid,.steps,.plans{grid-template-columns:1fr} .brand .wm{font-size:18px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <div class="brand">
+        <img src="https://github.com/DR-AI-STUDIO/images/blob/main/slate%20app.png?raw=true" alt="" onerror="this.style.display='none'">
+        <span class="wm">SLATE<span class="gold">.</span></span>
+      </div>
+      <a class="btn ghost" href="#pricing">요금제 보기</a>
+    </nav>
+    <div class="hero-in">
+      <span class="badge">촬영 현장 협업 플랫폼 · PWA</span>
+      <h1>흩어진 촬영 정보를 <span class="hl">하나의 슬레이트</span>로.<br>남는 기록은 <span class="hl">커리어</span>로.</h1>
+      <p class="sub">씬리스트·촬영계획표·로케이션·스탭을 실시간으로 잇고, 작품이 끝나도 기록이 필모그래피로 남는 촬영 협업 플랫폼입니다. 국가별 구인/구직 게시판과 슬레이톡으로 다음 작품의 팀도 여기서 만납니다.</p>
+      <div class="cta">
+        <a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener">지금 시작하기</a>
+        <a class="btn ghost" href="#features">기능 살펴보기</a>
+      </div>
+      <div class="heronote">앱 설치 없이 폰 홈화면에 추가 · 카카오·네이버·티맵(국내) / 구글맵(해외) 자동 연동</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="wrap" id="why">
+  <div class="eyebrow">WHY SLATE</div>
+  <h2>현장은 아직도 카톡·엑셀·종이로 굴러갑니다</h2>
+  <p class="lead">버전이 충돌하고, 순서 변경이 전달되지 않고, 위치와 날씨는 매번 다시 찾습니다. 슬레이트는 이 모든 걸 한 화면으로 모읍니다.</p>
+  <div class="prob">
+    <div class="card"><div class="q">😵 씬리스트·촬영계획표가 여기저기 흩어져요</div><div class="a">단일 플랫폼에서 <b>실시간 동기화</b> · 팀별 자동 반영</div></div>
+    <div class="card"><div class="q">🔁 순서변경·OMIT을 현장에서 못 알려요</div><div class="a">시작/종료·OMIT·순서변경·씬추가가 <b>전 팀 실시간</b></div></div>
+    <div class="card"><div class="q">📍 현장 위치·길안내가 번거로워요</div><div class="a">주소 클릭 한 번에 <b>내비 연결</b> · 체크한 현장 <b>차량 동선</b></div></div>
+    <div class="card"><div class="q">🌧️ 날씨로 촬영이 엎어져요</div><div class="a"><b>15일 촬영 곤란 예보</b>를 지도 핀·현장 리스트에 배지로</div></div>
+    <div class="card"><div class="q">🧑‍🤝‍🧑 급하게 팀·스탭 구할 곳이 없어요</div><div class="a"><b>국가별 구인/구직 게시판</b> · 이력서 앱 내 직접 지원 · <b>슬레이톡</b> 1:1 연락</div></div>
+    <div class="card"><div class="q">📇 지원자 경력 검증이 어려워요</div><div class="a">지원자의 <b>슬레이트 필모그래피</b>를 버튼 하나로 열람 — 실제 참여작으로 검증</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="wrap" id="features">
+  <div class="eyebrow">FEATURES</div>
+  <h2>촬영 현업 그대로, 필요한 기능만</h2>
+  <div class="grid">
+    <div class="feat"><div class="ico">🎬</div><h3>씬리스트</h3><p>조감독 관점 씬 정리표(원본+팀별 사본). 시제(Day)·인물·미술·의상/분장 컬럼까지.</p></div>
+    <div class="feat"><div class="ico">🗓️</div><h3>촬영계획표</h3><p>회차별 씬 편성과 순서변경·추가, PDF·Excel 내보내기, 인쇄용 레이아웃.</p></div>
+    <div class="feat"><div class="ico">⏱️</div><h3>현장 진행</h3><p>시작/종료 타임스탬프·OMIT을 진행 권한자가 실시간으로. 전 팀에 즉시 반영.</p></div>
+    <div class="feat"><div class="ico">🗺️</div><h3>로케이션 & 동선</h3><p>주소 검색→핀 자동 배치, 씬-현장 배정, 차량 동선, 현장주소 클릭 내비 연결.</p></div>
+    <div class="feat"><div class="ico">🌦️</div><h3>날씨 리스크</h3><p>좌표 기반 15일 예보. 한국은 기상청 정밀예보 보강, 곤란일을 핀·리스트에 경고.</p></div>
+    <div class="feat"><div class="ico">🎞️</div><h3>필모그래피</h3><p>작품이 끝나도 기록 보존·열람. 개인 포스터 앨범으로 커리어를 자산화 — 구인/구직에서 경력 증명으로.</p></div>
+    <div class="feat"><div class="ico">🤝</div><h3>구인/구직 게시판</h3><p>국가별 게시판에서 영화·드라마·광고 스탭 모집과 구직. 현장종류·팀별 분류, 이력서(PDF·워드) 앱 내 직접 지원 — 작성자만 열람.</p></div>
+    <div class="feat"><div class="ico">💬</div><h3>슬레이톡</h3><p>앱 안 1:1 메신저. 게시글·지원자에게 바로 연락, 전화번호 비공개 상태로도 소통. 새 메시지는 푸시로.</p></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="wrap" id="how">
+  <div class="eyebrow">HOW IT WORKS</div>
+  <h2>초대코드 하나로, 전 팀이 같은 화면</h2>
+  <div class="steps">
+    <div class="step"><h4>작품 개설</h4><p>작품 카드를 만들고 팀을 구성합니다.</p></div>
+    <div class="step"><h4>초대코드 참여</h4><p>스탭이 코드로 참여 → 멤버탭이 곧 스탭리스트.</p></div>
+    <div class="step"><h4>씬리스트·촬영계획표 배포</h4><p>연출팀이 원본을 관리, 각 팀이 실시간 확인.</p></div>
+    <div class="step"><h4>현장 진행·기록</h4><p>진행·동선·날씨·자료를 한 곳에서, 끝나면 필모로.</p></div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band"><div class="wrap"><div class="bandgrid">
+  <div><div class="n">실시간</div><div class="l">팀별 권한 기반 동기화 (Firestore)</div></div>
+  <div><div class="n">국내·해외</div><div class="l">가입국가별 지도·내비 자동 분기</div></div>
+  <div><div class="n">설치형 PWA</div><div class="l">앱스토어 없이 홈화면 설치·오프라인</div></div>
+</div></div></section>
+
+<!-- PRICING -->
+<section class="wrap" id="pricing">
+  <div class="eyebrow">PRICING</div>
+  <h2>규모에 맞게 고르세요</h2>
+  <p class="lead">월 단위 구독(부가세 포함 단일가) · 언제든 해지. 지금은 무료 체험 기간 — 모든 플랜을 0원으로 써볼 수 있습니다. 구인/구직 게시판과 슬레이톡은 <b style="color:var(--gold)">가입만 하면 무료</b>입니다.</p>
+  <div class="plans">
+    <div class="plan"><div class="tag">BASIC</div><h3>기본플랜</h3><p>필모그래피 열람·다운로드. 내 커리어 기록부터.</p><div class="who">개인 · 열람 중심</div></div>
+    <div class="plan"><div class="tag">SOLO</div><h3>개인플랜</h3><p>1인 전용 작업방. 나만의 씬리스트·촬영계획표 관리.</p><div class="who">1인 작업</div></div>
+    <div class="plan"><div class="tag">TEAM</div><h3>팀플랜</h3><p>단일 팀 공동 작업. 파트 단위 협업에 최적.</p><div class="who">한 팀</div></div>
+    <div class="plan best"><div class="tag gold">★ WORK</div><h3>작품플랜</h3><p>작품 전체(다팀) 협업. 로케이션·동선·날씨 등 풀기능.</p><div class="who">전 스텝 협업</div></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final"><div class="wrap">
+  <div class="eyebrow center" style="text-align:center">START NOW</div>
+  <h2>촬영의 모든 순간을, 하나의 슬레이트로.</h2>
+  <p class="lead" style="margin:0 auto">지금 작품을 개설하고, 전 팀을 초대해보세요.</p>
+  <div class="cta"><a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener">무료로 시작하기</a><a class="btn ghost" href="tel:010-2240-8110">도입 문의</a></div>
+  <div class="taglines">
+    <span>“씬리스트부터 필모그래피까지 — <b>현장을 잇다</b>.”</span>
+    <span>“흩어진 촬영 정보를 실시간으로, <b>남는 기록은 커리어로</b>.”</span>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© SlateSync — 촬영 현장 협업 플랫폼 · 문의 : 박영진 010-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a></div></footer>
+
+</body>
+</html>
