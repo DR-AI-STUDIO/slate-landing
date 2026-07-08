@@ -42,6 +42,19 @@
   .cta{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .heronote{margin-top:16px;font-size:12.5px;color:var(--muted2)}
 
+  /* 웰컴 추천인 코드 */
+  .refbox{margin:26px auto 0;max-width:520px;text-align:center;background:var(--goldsoft);
+    border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+  .refbox .rb-t{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px}
+  .refbox .rb-code{display:inline-flex;align-items:center;gap:10px;margin-top:10px}
+  .refbox .rb-code b{font-family:ui-monospace,Consolas,monospace;font-size:26px;letter-spacing:6px;
+    color:var(--text);background:#0f0c08;border:1px dashed var(--line);border-radius:10px;padding:6px 16px 6px 20px}
+  .refbox .rb-copy{padding:8px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:800;font-size:13px;
+    background:linear-gradient(180deg,var(--gold),var(--gold2));color:#1d1608}
+  .refbox .rb-d{margin-top:12px;font-size:13.5px;color:var(--muted)}
+  .refbox .rb-d b{color:var(--gold)}
+  .refbox .rb-s{margin-top:8px;font-size:11.5px;color:var(--muted2)}
+
   section{padding:74px 0}
   .eyebrow{color:var(--gold);font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
   h2{font-size:clamp(24px,3.6vw,34px);font-weight:900;letter-spacing:-.4px;margin:10px 0 8px}
@@ -124,6 +137,18 @@
         <a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener">지금 시작하기</a>
         <a class="btn ghost" href="#features">기능 살펴보기</a>
       </div>
+
+      <!-- 웰컴 추천인 코드 — 첫 가입자도 손해 없이 시작 + 추천인 제도 인지 -->
+      <div class="refbox">
+        <div class="rb-t">🎁 웰컴 추천인 코드</div>
+        <div class="rb-code">
+          <b id="refcode">73Q2RR</b>
+          <button class="rb-copy" onclick="navigator.clipboard.writeText('73Q2RR').then(()=>{this.textContent='복사됨 ✓';setTimeout(()=>this.textContent='복사',1500)})">복사</button>
+        </div>
+        <div class="rb-d">가입할 때 이 코드를 입력하면 <b>10,000포인트</b>가 적립됩니다 — 추후 작품카드 개설·연장에 사용할 수 있어요.</div>
+        <div class="rb-s">이미 추천해주신 분이 있다면 그분의 코드를 입력하세요 — 두 분 모두 각각 10,000포인트씩 적립됩니다. (전화번호 인증 완료 시 자동 적립)</div>
+      </div>
+
       <div class="heronote">앱 설치 없이 폰 홈화면에 추가 · 카카오·네이버·티맵(국내) / 구글맵(해외) 자동 연동</div>
     </div>
   </div>
