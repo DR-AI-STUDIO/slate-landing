@@ -29,10 +29,15 @@
   header.hero{position:relative;padding:26px 0 96px;text-align:center;overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0 0 auto 0;height:640px;pointer-events:none;
     background:radial-gradient(60% 80% at 50% -8%,rgba(251,191,36,.16),transparent 68%)}
-  .nav{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+  .nav{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2;gap:12px;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.5px}
   .brand img{width:38px;height:38px;border-radius:11px}
   .brand .wm{font-size:20px}
+  .navright{display:flex;align-items:center;gap:10px}
+  .langsel{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;
+    padding:9px 12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+  .langsel:focus{outline:none;border-color:var(--gold)}
+  .langsel option{background:var(--panel);color:var(--text)}
   .hero-in{position:relative;z-index:2;padding-top:70px}
   .badge{display:inline-block;font-size:12.5px;font-weight:700;color:var(--gold);
     border:1px solid var(--line);background:var(--goldsoft);padding:7px 14px;border-radius:999px;margin-bottom:26px}
@@ -127,29 +132,33 @@
         <img src="https://github.com/DR-AI-STUDIO/images/blob/main/slate%20app.png?raw=true" alt="" onerror="this.style.display='none'">
         <span class="wm">SLATE<span class="gold">.</span></span>
       </div>
-      <a class="btn ghost" href="#pricing">요금제 보기</a>
+      <div class="navright">
+        <span aria-hidden="true">🌐</span>
+        <select id="langsel" class="langsel" aria-label="Language"></select>
+        <a class="btn ghost" href="#pricing" data-i18n="nav_pricing">요금제 보기</a>
+      </div>
     </nav>
     <div class="hero-in">
-      <span class="badge">촬영 현장 협업 플랫폼 · PWA</span>
-      <h1>흩어진 촬영 정보를 <span class="hl">하나의 슬레이트</span>로.<br>남는 기록은 <span class="hl">커리어</span>로.</h1>
-      <p class="sub">씬리스트·촬영계획표·로케이션·스탭을 실시간으로 잇고, 작품이 끝나도 기록이 필모그래피로 남는 촬영 협업 플랫폼입니다. 국가별 구인/구직 게시판과 슬레이톡으로 다음 작품의 팀도 여기서 만납니다.</p>
+      <span class="badge" data-i18n="hero_badge">촬영 현장 협업 플랫폼 · PWA</span>
+      <h1 data-i18n="hero_h1">흩어진 촬영 정보를 <span class="hl">하나의 슬레이트</span>로.<br>남는 기록은 <span class="hl">커리어</span>로.</h1>
+      <p class="sub" data-i18n="hero_sub">씬리스트·촬영계획표·로케이션·스탭을 실시간으로 잇고, 작품이 끝나도 기록이 필모그래피로 남는 촬영 협업 플랫폼입니다. 국가별 구인/구직 게시판과 슬레이톡으로 다음 작품의 팀도 여기서 만납니다.</p>
       <div class="cta">
-        <a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener">지금 시작하기</a>
-        <a class="btn ghost" href="#features">기능 살펴보기</a>
+        <a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" data-i18n="hero_cta_start">지금 시작하기</a>
+        <a class="btn ghost" href="#features" data-i18n="hero_cta_explore">기능 살펴보기</a>
       </div>
 
       <!-- 웰컴 추천인 코드 — 첫 가입자도 손해 없이 시작 + 추천인 제도 인지 -->
       <div class="refbox">
-        <div class="rb-t">🎁 웰컴 추천인 코드</div>
+        <div class="rb-t" data-i18n="ref_title">🎁 웰컴 추천인 코드</div>
         <div class="rb-code">
           <b id="refcode">73Q2RR</b>
-          <button class="rb-copy" onclick="navigator.clipboard.writeText('73Q2RR').then(()=>{this.textContent='복사됨 ✓';setTimeout(()=>this.textContent='복사',1500)})">복사</button>
+          <button class="rb-copy" data-i18n="copy_btn" onclick="copyRef(this)">복사</button>
         </div>
-        <div class="rb-d">가입할 때 이 코드를 입력하면 <b>10,000포인트</b>가 적립됩니다 — 추후 작품카드 개설·연장에 사용할 수 있어요.</div>
-        <div class="rb-s">이미 추천해주신 분이 있다면 그분의 코드를 입력하세요 — 두 분 모두 각각 10,000포인트씩 적립됩니다. (전화번호 인증 완료 시 자동 적립)</div>
+        <div class="rb-d" data-i18n="ref_desc">가입할 때 이 코드를 입력하면 <b>10,000포인트</b>가 적립됩니다 — 추후 작품카드 개설·연장에 사용할 수 있어요.</div>
+        <div class="rb-s" data-i18n="ref_sub">이미 추천해주신 분이 있다면 그분의 코드를 입력하세요 — 두 분 모두 각각 10,000포인트씩 적립됩니다. (전화번호 인증 완료 시 자동 적립)</div>
       </div>
 
-      <div class="heronote">앱 설치 없이 폰 홈화면에 추가 · 카카오·네이버·티맵(국내) / 구글맵(해외) 자동 연동</div>
+      <div class="heronote" data-i18n="hero_note">앱 설치 없이 폰 홈화면에 추가 · 카카오·네이버·티맵(국내) / 구글맵(해외) 자동 연동</div>
     </div>
   </div>
 </header>
@@ -157,80 +166,977 @@
 <!-- PROBLEM -->
 <section class="wrap" id="why">
   <div class="eyebrow">WHY SLATE</div>
-  <h2>현장은 아직도 카톡·엑셀·종이로 굴러갑니다</h2>
-  <p class="lead">버전이 충돌하고, 순서 변경이 전달되지 않고, 위치와 날씨는 매번 다시 찾습니다. 슬레이트는 이 모든 걸 한 화면으로 모읍니다.</p>
+  <h2 data-i18n="why_h2">현장은 아직도 카톡·엑셀·종이로 굴러갑니다</h2>
+  <p class="lead" data-i18n="why_lead">버전이 충돌하고, 순서 변경이 전달되지 않고, 위치와 날씨는 매번 다시 찾습니다. 슬레이트는 이 모든 걸 한 화면으로 모읍니다.</p>
   <div class="prob">
-    <div class="card"><div class="q">😵 씬리스트·촬영계획표가 여기저기 흩어져요</div><div class="a">단일 플랫폼에서 <b>실시간 동기화</b> · 팀별 자동 반영</div></div>
-    <div class="card"><div class="q">🔁 순서변경·OMIT을 현장에서 못 알려요</div><div class="a">시작/종료·OMIT·순서변경·씬추가가 <b>전 팀 실시간</b></div></div>
-    <div class="card"><div class="q">📍 현장 위치·길안내가 번거로워요</div><div class="a">주소 클릭 한 번에 <b>내비 연결</b> · 체크한 현장 <b>차량 동선</b></div></div>
-    <div class="card"><div class="q">🌧️ 날씨로 촬영이 엎어져요</div><div class="a"><b>15일 촬영 곤란 예보</b>를 지도 핀·현장 리스트에 배지로</div></div>
-    <div class="card"><div class="q">🧑‍🤝‍🧑 급하게 팀·스탭 구할 곳이 없어요</div><div class="a"><b>국가별 구인/구직 게시판</b> · 이력서 앱 내 직접 지원 · <b>슬레이톡</b> 1:1 연락</div></div>
-    <div class="card"><div class="q">📇 이력서 허위 경력을 걸러낼 수 없어요</div><div class="a">슬레이트 필모그래피는 <b>실제 작품에 참여해야만</b> 남는 기록 — <b>허위 경력이 원천적으로 불가능</b></div></div>
+    <div class="card"><div class="q" data-i18n="p1_q">😵 씬리스트·촬영계획표가 여기저기 흩어져요</div><div class="a" data-i18n="p1_a">단일 플랫폼에서 <b>실시간 동기화</b> · 팀별 자동 반영</div></div>
+    <div class="card"><div class="q" data-i18n="p2_q">🔁 순서변경·OMIT을 현장에서 못 알려요</div><div class="a" data-i18n="p2_a">시작/종료·OMIT·순서변경·씬추가가 <b>전 팀 실시간</b></div></div>
+    <div class="card"><div class="q" data-i18n="p3_q">📍 현장 위치·길안내가 번거로워요</div><div class="a" data-i18n="p3_a">주소 클릭 한 번에 <b>내비 연결</b> · 체크한 현장 <b>차량 동선</b></div></div>
+    <div class="card"><div class="q" data-i18n="p4_q">🌧️ 날씨로 촬영이 엎어져요</div><div class="a" data-i18n="p4_a"><b>15일 촬영 곤란 예보</b>를 지도 핀·현장 리스트에 배지로</div></div>
+    <div class="card"><div class="q" data-i18n="p5_q">🧑‍🤝‍🧑 급하게 팀·스탭 구할 곳이 없어요</div><div class="a" data-i18n="p5_a"><b>국가별 구인/구직 게시판</b> · 이력서 앱 내 직접 지원 · <b>슬레이톡</b> 1:1 연락</div></div>
+    <div class="card"><div class="q" data-i18n="p6_q">📇 이력서 허위 경력을 걸러낼 수 없어요</div><div class="a" data-i18n="p6_a">슬레이트 필모그래피는 <b>실제 작품에 참여해야만</b> 남는 기록 — <b>허위 경력이 원천적으로 불가능</b></div></div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="wrap" id="features">
   <div class="eyebrow">FEATURES</div>
-  <h2>촬영 현업 그대로, 필요한 기능만</h2>
+  <h2 data-i18n="feat_h2">촬영 현업 그대로, 필요한 기능만</h2>
   <div class="grid">
-    <div class="feat"><div class="ico">🎬</div><h3>씬리스트</h3><p>조감독 관점 씬 정리표(원본+팀별 사본). 시제(Day)·인물·미술·의상/분장 컬럼까지.</p></div>
-    <div class="feat"><div class="ico">🗓️</div><h3>촬영계획표</h3><p>회차별 씬 편성과 순서변경·추가, 스텝연락처(탭하면 바로 전화)까지 진짜 콜시트 그대로. PDF·Excel 내보내기, 인쇄용 레이아웃.</p></div>
-    <div class="feat"><div class="ico">⏱️</div><h3>현장 진행</h3><p>시작/종료 타임스탬프·OMIT을 진행 권한자가 실시간으로. 전 팀에 즉시 반영.</p></div>
-    <div class="feat"><div class="ico">🗺️</div><h3>로케이션 & 동선</h3><p>주소 검색→핀 자동 배치, 씬-현장 배정, 차량 동선, 현장주소 클릭 내비 연결.</p></div>
-    <div class="feat"><div class="ico">🌦️</div><h3>날씨 리스크</h3><p>좌표 기반 15일 예보. 한국은 기상청 정밀예보 보강, 곤란일을 핀·리스트에 경고.</p></div>
-    <div class="feat"><div class="ico">🎞️</div><h3>필모그래피</h3><p>작품이 끝나도 기록 보존·열람. 개인 포스터 앨범으로 커리어를 자산화 — 구인/구직에서 경력 증명으로.</p></div>
-    <div class="feat"><div class="ico">🤝</div><h3>구인/구직 게시판</h3><p>국가별 게시판에서 영화·드라마·광고 스탭 모집과 구직. 현장종류·팀별 분류·필터, 이력서(PDF·워드) 앱 내 직접 지원 — 작성자만 열람. 구직자의 필모그래피는 <b style="color:var(--gold)">실제 참여로만 쌓인 기록</b>이라 허위 경력이 없습니다.</p></div>
-    <div class="feat"><div class="ico">💬</div><h3>슬레이톡</h3><p>앱 안 1:1 메신저. 게시글·지원자에게 바로 연락, 전화번호 비공개 상태로도 소통. 새 메시지는 푸시로.</p></div>
-    <div class="feat"><div class="ico">📸</div><h3>연결사진, 찍는 즉시 그 씬에</h3><p>사진 찍고 나중에 씬 번호·배우를 찾아 정리하던 시간은 이제 그만. 씬리스트 속 씬마다 인물·소품·현장 폴더를 만들고, 촬영 즉시 그 자리에서 저장·기록하세요. <b style="color:var(--gold)">폴더 복제</b>로 반복되는 연결 자료도 한 번에.</p></div>
+    <div class="feat"><div class="ico">🎬</div><h3 data-i18n="f1_t">씬리스트</h3><p data-i18n="f1_d">조감독 관점 씬 정리표(원본+팀별 사본). 시제(Day)·인물·미술·의상/분장 컬럼까지.</p></div>
+    <div class="feat"><div class="ico">🗓️</div><h3 data-i18n="f2_t">촬영계획표</h3><p data-i18n="f2_d">회차별 씬 편성과 순서변경·추가, 스텝연락처(탭하면 바로 전화)까지 진짜 콜시트 그대로. PDF·Excel 내보내기, 인쇄용 레이아웃.</p></div>
+    <div class="feat"><div class="ico">⏱️</div><h3 data-i18n="f3_t">현장 진행</h3><p data-i18n="f3_d">시작/종료 타임스탬프·OMIT을 진행 권한자가 실시간으로. 전 팀에 즉시 반영.</p></div>
+    <div class="feat"><div class="ico">🗺️</div><h3 data-i18n="f4_t">로케이션 & 동선</h3><p data-i18n="f4_d">주소 검색→핀 자동 배치, 씬-현장 배정, 차량 동선, 현장주소 클릭 내비 연결.</p></div>
+    <div class="feat"><div class="ico">🌦️</div><h3 data-i18n="f5_t">날씨 리스크</h3><p data-i18n="f5_d">좌표 기반 15일 예보. 한국은 기상청 정밀예보 보강, 곤란일을 핀·리스트에 경고.</p></div>
+    <div class="feat"><div class="ico">🎞️</div><h3 data-i18n="f6_t">필모그래피</h3><p data-i18n="f6_d">작품이 끝나도 기록 보존·열람. 개인 포스터 앨범으로 커리어를 자산화 — 구인/구직에서 경력 증명으로.</p></div>
+    <div class="feat"><div class="ico">🤝</div><h3 data-i18n="f7_t">구인/구직 게시판</h3><p data-i18n="f7_d">국가별 게시판에서 영화·드라마·광고 스탭 모집과 구직. 현장종류·팀별 분류·필터, 이력서(PDF·워드) 앱 내 직접 지원 — 작성자만 열람. 구직자의 필모그래피는 <b style="color:var(--gold)">실제 참여로만 쌓인 기록</b>이라 허위 경력이 없습니다.</p></div>
+    <div class="feat"><div class="ico">💬</div><h3 data-i18n="f8_t">슬레이톡</h3><p data-i18n="f8_d">앱 안 1:1 메신저. 게시글·지원자에게 바로 연락, 전화번호 비공개 상태로도 소통. 새 메시지는 푸시로.</p></div>
+    <div class="feat"><div class="ico">📸</div><h3 data-i18n="f9_t">연결사진, 찍는 즉시 그 씬에</h3><p data-i18n="f9_d">사진 찍고 나중에 씬 번호·배우를 찾아 정리하던 시간은 이제 그만. 씬리스트 속 씬마다 인물·소품·현장 폴더를 만들고, 촬영 즉시 그 자리에서 저장·기록하세요. <b style="color:var(--gold)">폴더 복제</b>로 반복되는 연결 자료도 한 번에.</p></div>
   </div>
 </section>
 
 <!-- HOW -->
 <section class="wrap" id="how">
   <div class="eyebrow">HOW IT WORKS</div>
-  <h2>초대코드 하나로, 전 팀이 같은 화면</h2>
+  <h2 data-i18n="how_h2">초대코드 하나로, 전 팀이 같은 화면</h2>
   <div class="steps">
-    <div class="step"><h4>작품 개설</h4><p>작품 카드를 만들고 팀을 구성합니다.</p></div>
-    <div class="step"><h4>초대코드 참여</h4><p>스탭이 코드로 참여, 직함(분장팀장·라인PD 등)까지 등록 → 멤버탭이 곧 스탭리스트.</p></div>
-    <div class="step"><h4>씬리스트·촬영계획표 배포</h4><p>연출팀이 원본을 관리, 각 팀이 실시간 확인.</p></div>
-    <div class="step"><h4>현장 진행·기록</h4><p>진행·동선·날씨·자료를 한 곳에서, 끝나면 필모로.</p></div>
+    <div class="step"><h4 data-i18n="s1_t">작품 개설</h4><p data-i18n="s1_d">작품 카드를 만들고 팀을 구성합니다.</p></div>
+    <div class="step"><h4 data-i18n="s2_t">초대코드 참여</h4><p data-i18n="s2_d">스탭이 코드로 참여, 직함(분장팀장·라인PD 등)까지 등록 → 멤버탭이 곧 스탭리스트.</p></div>
+    <div class="step"><h4 data-i18n="s3_t">씬리스트·촬영계획표 배포</h4><p data-i18n="s3_d">연출팀이 원본을 관리, 각 팀이 실시간 확인.</p></div>
+    <div class="step"><h4 data-i18n="s4_t">현장 진행·기록</h4><p data-i18n="s4_d">진행·동선·날씨·자료를 한 곳에서, 끝나면 필모로.</p></div>
   </div>
 </section>
 
 <!-- BAND -->
 <section class="band"><div class="wrap"><div class="bandgrid">
-  <div><div class="n">실시간</div><div class="l">팀별 권한 기반 동기화 (Firestore)</div></div>
-  <div><div class="n">국내·해외</div><div class="l">가입국가별 지도·내비 자동 분기</div></div>
-  <div><div class="n">설치형 PWA</div><div class="l">앱스토어 없이 홈화면 설치·오프라인</div></div>
+  <div><div class="n" data-i18n="band1_n">실시간</div><div class="l" data-i18n="band1_l">팀별 권한 기반 동기화 (Firestore)</div></div>
+  <div><div class="n" data-i18n="band2_n">국내·해외</div><div class="l" data-i18n="band2_l">가입국가별 지도·내비 자동 분기</div></div>
+  <div><div class="n" data-i18n="band3_n">설치형 PWA</div><div class="l" data-i18n="band3_l">앱스토어 없이 홈화면 설치·오프라인</div></div>
 </div></div></section>
 
 <!-- PRICING -->
 <section class="wrap" id="pricing">
   <div class="eyebrow">PRICING</div>
-  <h2>규모에 맞게 고르세요</h2>
-  <p class="lead">월 단위 구독(부가세 포함 단일가) · 언제든 해지. 지금은 무료 체험 기간 — 모든 플랜을 0원으로 써볼 수 있습니다. 구인/구직 게시판과 슬레이톡은 <b style="color:var(--gold)">가입만 하면 무료</b>입니다.</p>
+  <h2 data-i18n="price_h2">규모에 맞게 고르세요</h2>
+  <p class="lead" data-i18n="price_lead">월 단위 구독(부가세 포함 단일가) · 언제든 해지. 지금은 무료 체험 기간 — 모든 플랜을 0원으로 써볼 수 있습니다. 구인/구직 게시판과 슬레이톡은 <b style="color:var(--gold)">가입만 하면 무료</b>입니다.</p>
   <div class="plans">
-    <div class="plan"><div class="tag">BASIC</div><h3>기본플랜</h3><p>필모그래피 열람·다운로드. 내 커리어 기록부터.</p><div class="who">개인 · 열람 중심</div></div>
-    <div class="plan"><div class="tag">SOLO</div><h3>개인플랜</h3><p>1인 전용 작업방. 나만의 씬리스트·촬영계획표 관리.</p><div class="who">1인 작업</div></div>
-    <div class="plan"><div class="tag">TEAM</div><h3>팀플랜</h3><p>단일 팀 공동 작업. 파트 단위 협업에 최적.</p><div class="who">한 팀</div></div>
-    <div class="plan best"><div class="tag gold">★ WORK</div><h3>작품플랜</h3><p>작품 전체(다팀) 협업. 로케이션·동선·날씨 등 풀기능.</p><div class="who">전 스텝 협업</div></div>
+    <div class="plan"><div class="tag">BASIC</div><h3 data-i18n="pl1_name">기본플랜</h3><p data-i18n="pl1_desc">필모그래피 열람·다운로드. 내 커리어 기록부터.</p><div class="who" data-i18n="pl1_who">개인 · 열람 중심</div></div>
+    <div class="plan"><div class="tag">SOLO</div><h3 data-i18n="pl2_name">개인플랜</h3><p data-i18n="pl2_desc">1인 전용 작업방. 나만의 씬리스트·촬영계획표 관리.</p><div class="who" data-i18n="pl2_who">1인 작업</div></div>
+    <div class="plan"><div class="tag">TEAM</div><h3 data-i18n="pl3_name">팀플랜</h3><p data-i18n="pl3_desc">단일 팀 공동 작업. 파트 단위 협업에 최적.</p><div class="who" data-i18n="pl3_who">한 팀</div></div>
+    <div class="plan best"><div class="tag gold">★ WORK</div><h3 data-i18n="pl4_name">작품플랜</h3><p data-i18n="pl4_desc">작품 전체(다팀) 협업. 로케이션·동선·날씨 등 풀기능.</p><div class="who" data-i18n="pl4_who">전 스텝 협업</div></div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final"><div class="wrap">
   <div class="eyebrow center" style="text-align:center">START NOW</div>
-  <h2>촬영의 모든 순간을, 하나의 슬레이트로.</h2>
-  <p class="lead" style="margin:0 auto">지금 작품을 개설하고, 전 팀을 초대해보세요.</p>
-  <div class="cta"><a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener">무료로 시작하기</a><a class="btn ghost" href="tel:010-2240-8110">도입 문의</a></div>
+  <h2 data-i18n="final_h2">촬영의 모든 순간을, 하나의 슬레이트로.</h2>
+  <p class="lead" style="margin:0 auto" data-i18n="final_lead">지금 작품을 개설하고, 전 팀을 초대해보세요.</p>
+  <div class="cta"><a class="btn" href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" data-i18n="final_cta_start">무료로 시작하기</a><a class="btn ghost" href="tel:+821022408110" data-i18n="final_cta_contact">도입 문의</a></div>
   <div class="taglines">
-    <span>“씬리스트부터 필모그래피까지 — <b>현장을 잇다</b>.”</span>
-    <span>“흩어진 촬영 정보를 실시간으로, <b>남는 기록은 커리어로</b>.”</span>
+    <span data-i18n="tag1">“씬리스트부터 필모그래피까지 — <b>현장을 잇다</b>.”</span>
+    <span data-i18n="tag2">“흩어진 촬영 정보를 실시간으로, <b>남는 기록은 커리어로</b>.”</span>
   </div>
 </div></section>
 
-<footer><div class="wrap">© SlateSync — 촬영 현장 협업 플랫폼 · 문의 : 박영진 010-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a></div></footer>
+<footer><div class="wrap" data-i18n="footer">© SlateSync — 촬영 현장 협업 플랫폼 · 문의 : 박영진 010-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a></div></footer>
+
+<script>
+/* 다국어 사전 — 앱과 동일 10개 언어. 값은 innerHTML로 주입(마크업 포함 허용, 신뢰된 자체 콘텐츠). */
+const I18N = {
+  ko: {
+    title: `슬레이트(SlateSync) — 촬영 현장을 잇는 협업 플랫폼`,
+    nav_pricing: `요금제 보기`,
+    hero_badge: `촬영 현장 협업 플랫폼 · PWA`,
+    hero_h1: `흩어진 촬영 정보를 <span class="hl">하나의 슬레이트</span>로.<br>남는 기록은 <span class="hl">커리어</span>로.`,
+    hero_sub: `씬리스트·촬영계획표·로케이션·스탭을 실시간으로 잇고, 작품이 끝나도 기록이 필모그래피로 남는 촬영 협업 플랫폼입니다. 국가별 구인/구직 게시판과 슬레이톡으로 다음 작품의 팀도 여기서 만납니다.`,
+    hero_cta_start: `지금 시작하기`,
+    hero_cta_explore: `기능 살펴보기`,
+    ref_title: `🎁 웰컴 추천인 코드`,
+    ref_desc: `가입할 때 이 코드를 입력하면 <b>10,000포인트</b>가 적립됩니다 — 추후 작품카드 개설·연장에 사용할 수 있어요.`,
+    ref_sub: `이미 추천해주신 분이 있다면 그분의 코드를 입력하세요 — 두 분 모두 각각 10,000포인트씩 적립됩니다. (전화번호 인증 완료 시 자동 적립)`,
+    hero_note: `앱 설치 없이 폰 홈화면에 추가 · 카카오·네이버·티맵(국내) / 구글맵(해외) 자동 연동`,
+    copy_btn: `복사`,
+    copied_btn: `복사됨 ✓`,
+    why_h2: `현장은 아직도 카톡·엑셀·종이로 굴러갑니다`,
+    why_lead: `버전이 충돌하고, 순서 변경이 전달되지 않고, 위치와 날씨는 매번 다시 찾습니다. 슬레이트는 이 모든 걸 한 화면으로 모읍니다.`,
+    p1_q: `😵 씬리스트·촬영계획표가 여기저기 흩어져요`,
+    p1_a: `단일 플랫폼에서 <b>실시간 동기화</b> · 팀별 자동 반영`,
+    p2_q: `🔁 순서변경·OMIT을 현장에서 못 알려요`,
+    p2_a: `시작/종료·OMIT·순서변경·씬추가가 <b>전 팀 실시간</b>`,
+    p3_q: `📍 현장 위치·길안내가 번거로워요`,
+    p3_a: `주소 클릭 한 번에 <b>내비 연결</b> · 체크한 현장 <b>차량 동선</b>`,
+    p4_q: `🌧️ 날씨로 촬영이 엎어져요`,
+    p4_a: `<b>15일 촬영 곤란 예보</b>를 지도 핀·현장 리스트에 배지로`,
+    p5_q: `🧑‍🤝‍🧑 급하게 팀·스탭 구할 곳이 없어요`,
+    p5_a: `<b>국가별 구인/구직 게시판</b> · 이력서 앱 내 직접 지원 · <b>슬레이톡</b> 1:1 연락`,
+    p6_q: `📇 이력서 허위 경력을 걸러낼 수 없어요`,
+    p6_a: `슬레이트 필모그래피는 <b>실제 작품에 참여해야만</b> 남는 기록 — <b>허위 경력이 원천적으로 불가능</b>`,
+    feat_h2: `촬영 현업 그대로, 필요한 기능만`,
+    f1_t: `씬리스트`,
+    f1_d: `조감독 관점 씬 정리표(원본+팀별 사본). 시제(Day)·인물·미술·의상/분장 컬럼까지.`,
+    f2_t: `촬영계획표`,
+    f2_d: `회차별 씬 편성과 순서변경·추가, 스텝연락처(탭하면 바로 전화)까지 진짜 콜시트 그대로. PDF·Excel 내보내기, 인쇄용 레이아웃.`,
+    f3_t: `현장 진행`,
+    f3_d: `시작/종료 타임스탬프·OMIT을 진행 권한자가 실시간으로. 전 팀에 즉시 반영.`,
+    f4_t: `로케이션 & 동선`,
+    f4_d: `주소 검색→핀 자동 배치, 씬-현장 배정, 차량 동선, 현장주소 클릭 내비 연결.`,
+    f5_t: `날씨 리스크`,
+    f5_d: `좌표 기반 15일 예보. 한국은 기상청 정밀예보 보강, 곤란일을 핀·리스트에 경고.`,
+    f6_t: `필모그래피`,
+    f6_d: `작품이 끝나도 기록 보존·열람. 개인 포스터 앨범으로 커리어를 자산화 — 구인/구직에서 경력 증명으로.`,
+    f7_t: `구인/구직 게시판`,
+    f7_d: `국가별 게시판에서 영화·드라마·광고 스탭 모집과 구직. 현장종류·팀별 분류·필터, 이력서(PDF·워드) 앱 내 직접 지원 — 작성자만 열람. 구직자의 필모그래피는 <b style="color:var(--gold)">실제 참여로만 쌓인 기록</b>이라 허위 경력이 없습니다.`,
+    f8_t: `슬레이톡`,
+    f8_d: `앱 안 1:1 메신저. 게시글·지원자에게 바로 연락, 전화번호 비공개 상태로도 소통. 새 메시지는 푸시로.`,
+    f9_t: `연결사진, 찍는 즉시 그 씬에`,
+    f9_d: `사진 찍고 나중에 씬 번호·배우를 찾아 정리하던 시간은 이제 그만. 씬리스트 속 씬마다 인물·소품·현장 폴더를 만들고, 촬영 즉시 그 자리에서 저장·기록하세요. <b style="color:var(--gold)">폴더 복제</b>로 반복되는 연결 자료도 한 번에.`,
+    how_h2: `초대코드 하나로, 전 팀이 같은 화면`,
+    s1_t: `작품 개설`,
+    s1_d: `작품 카드를 만들고 팀을 구성합니다.`,
+    s2_t: `초대코드 참여`,
+    s2_d: `스탭이 코드로 참여, 직함(분장팀장·라인PD 등)까지 등록 → 멤버탭이 곧 스탭리스트.`,
+    s3_t: `씬리스트·촬영계획표 배포`,
+    s3_d: `연출팀이 원본을 관리, 각 팀이 실시간 확인.`,
+    s4_t: `현장 진행·기록`,
+    s4_d: `진행·동선·날씨·자료를 한 곳에서, 끝나면 필모로.`,
+    band1_n: `실시간`,
+    band1_l: `팀별 권한 기반 동기화 (Firestore)`,
+    band2_n: `국내·해외`,
+    band2_l: `가입국가별 지도·내비 자동 분기`,
+    band3_n: `설치형 PWA`,
+    band3_l: `앱스토어 없이 홈화면 설치·오프라인`,
+    price_h2: `규모에 맞게 고르세요`,
+    price_lead: `월 단위 구독(부가세 포함 단일가) · 언제든 해지. 지금은 무료 체험 기간 — 모든 플랜을 0원으로 써볼 수 있습니다. 구인/구직 게시판과 슬레이톡은 <b style="color:var(--gold)">가입만 하면 무료</b>입니다.`,
+    pl1_name: `기본플랜`,
+    pl1_desc: `필모그래피 열람·다운로드. 내 커리어 기록부터.`,
+    pl1_who: `개인 · 열람 중심`,
+    pl2_name: `개인플랜`,
+    pl2_desc: `1인 전용 작업방. 나만의 씬리스트·촬영계획표 관리.`,
+    pl2_who: `1인 작업`,
+    pl3_name: `팀플랜`,
+    pl3_desc: `단일 팀 공동 작업. 파트 단위 협업에 최적.`,
+    pl3_who: `한 팀`,
+    pl4_name: `작품플랜`,
+    pl4_desc: `작품 전체(다팀) 협업. 로케이션·동선·날씨 등 풀기능.`,
+    pl4_who: `전 스텝 협업`,
+    final_h2: `촬영의 모든 순간을, 하나의 슬레이트로.`,
+    final_lead: `지금 작품을 개설하고, 전 팀을 초대해보세요.`,
+    final_cta_start: `무료로 시작하기`,
+    final_cta_contact: `도입 문의`,
+    tag1: `“씬리스트부터 필모그래피까지 — <b>현장을 잇다</b>.”`,
+    tag2: `“흩어진 촬영 정보를 실시간으로, <b>남는 기록은 커리어로</b>.”`,
+    footer: `© SlateSync — 촬영 현장 협업 플랫폼 · 문의 : 박영진 010-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  en: {
+    title: `Slate (SlateSync) — The collaboration platform that connects the film set`,
+    nav_pricing: `Pricing`,
+    hero_badge: `Film-set collaboration platform · PWA`,
+    hero_h1: `Scattered set info, into <span class="hl">one Slate</span>.<br>What remains becomes your <span class="hl">career</span>.`,
+    hero_sub: `A production collaboration platform that links scene lists, call sheets, locations, and crew in real time — and keeps every record as your filmography even after the shoot wraps. Meet the team for your next project through country-based job boards and SlateTalk.`,
+    hero_cta_start: `Get started`,
+    hero_cta_explore: `Explore features`,
+    ref_title: `🎁 Welcome referral code`,
+    ref_desc: `Enter this code when you sign up to earn <b>10,000 points</b> — usable later to open or extend a project card.`,
+    ref_sub: `If someone already referred you, enter their code instead — you both earn 10,000 points each. (Credited automatically once phone verification is complete.)`,
+    hero_note: `Add to your phone's home screen, no app install needed · Kakao·Naver·TMAP (Korea) / Google Maps (overseas) auto-linked`,
+    copy_btn: `Copy`,
+    copied_btn: `Copied ✓`,
+    why_h2: `Sets still run on messaging apps, spreadsheets, and paper`,
+    why_lead: `Versions clash, order changes don't reach everyone, and you look up locations and weather over and over. Slate brings it all onto one screen.`,
+    p1_q: `😵 Scene lists and call sheets scattered everywhere`,
+    p1_a: `<b>Real-time sync</b> on one platform · auto-reflected for every team`,
+    p2_q: `🔁 Can't announce reordering or OMIT on set`,
+    p2_a: `Start/end · OMIT · reorder · add scene, all <b>live for every team</b>`,
+    p3_q: `📍 Sharing locations and directions is a hassle`,
+    p3_a: `One tap on the address opens <b>navigation</b> · <b>driving routes</b> for checked locations`,
+    p4_q: `🌧️ Weather ruins the shoot`,
+    p4_a: `A <b>15-day shoot-risk forecast</b> as badges on map pins and the location list`,
+    p5_q: `🧑‍🤝‍🧑 Nowhere to find crew or a team in a hurry`,
+    p5_a: `<b>Country-based job boards</b> · apply with your résumé in-app · <b>SlateTalk</b> 1:1 contact`,
+    p6_q: `📇 No way to filter out fake résumé credits`,
+    p6_a: `A Slate filmography is a record kept <b>only by actually joining a project</b> — <b>fake credits are simply impossible</b>`,
+    feat_h2: `Real production workflows, only the features you need`,
+    f1_t: `Scene List`,
+    f1_d: `An AD-style scene table (master + per-team copies). Day/time, characters, art, costume/makeup columns and more.`,
+    f2_t: `Call Sheet`,
+    f2_d: `Per-day scene planning, reordering and additions, plus staff contacts (tap to call) — a real call sheet. Export to PDF·Excel, print-ready layout.`,
+    f3_t: `On-set Progress`,
+    f3_d: `Start/end timestamps and OMIT, updated live by authorized users. Instantly reflected for every team.`,
+    f4_t: `Locations & Routes`,
+    f4_d: `Search an address → auto-place a pin, assign scenes to locations, driving routes, tap an address for navigation.`,
+    f5_t: `Weather Risk`,
+    f5_d: `Coordinate-based 15-day forecast. Korea adds KMA precision forecasts, flagging risky days on pins and lists.`,
+    f6_t: `Filmography`,
+    f6_d: `Records preserved and viewable after the shoot wraps. Turn your career into an asset with a personal poster album — proof of experience when job hunting.`,
+    f7_t: `Job Board`,
+    f7_d: `Recruit and job-hunt for film, drama, and commercial crew on country-based boards. Site-type/team categories and filters, apply with a résumé (PDF·Word) in-app — visible only to the poster. A job seeker's filmography is <b style="color:var(--gold)">built only from real participation</b>, so there are no fake credits.`,
+    f8_t: `SlateTalk`,
+    f8_d: `A built-in 1:1 messenger. Contact posters and applicants directly, communicate even with your number hidden. New messages arrive as push.`,
+    f9_t: `Continuity photos, straight to the scene`,
+    f9_d: `No more shooting photos and hunting for scene numbers and actors later. Create character, prop, and location folders for each scene in the scene list, and save·log right on the spot as you shoot. <b style="color:var(--gold)">Duplicate folders</b> to handle recurring continuity material at once.`,
+    how_h2: `One invite code, one screen for the whole team`,
+    s1_t: `Open a project`,
+    s1_d: `Create a project card and build your teams.`,
+    s2_t: `Join with a code`,
+    s2_d: `Crew join with a code and register their title (Makeup Chief, Line PD, etc.) → the member tab becomes your crew list.`,
+    s3_t: `Publish scene lists & call sheets`,
+    s3_d: `The directing team manages the master; each team checks it in real time.`,
+    s4_t: `Run & record the set`,
+    s4_d: `Progress, routes, weather, and materials in one place — filmography when it wraps.`,
+    band1_n: `Real time`,
+    band1_l: `Team-permission-based sync (Firestore)`,
+    band2_n: `Korea & overseas`,
+    band2_l: `Maps·navigation auto-branch by signup country`,
+    band3_n: `Installable PWA`,
+    band3_l: `Home-screen install without an app store · offline`,
+    price_h2: `Pick the size that fits`,
+    price_lead: `Monthly subscription (single VAT-included price) · cancel anytime. It's a free trial period right now — try every plan at zero cost. The job board and SlateTalk are <b style="color:var(--gold)">free just by signing up</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `View and download filmography. Start from your own career record.`,
+    pl1_who: `Individual · viewing`,
+    pl2_name: `Solo`,
+    pl2_desc: `A solo workspace. Manage your own scene lists and call sheets.`,
+    pl2_who: `Solo work`,
+    pl3_name: `Team`,
+    pl3_desc: `Shared work for a single team. Best for part-level collaboration.`,
+    pl3_who: `One team`,
+    pl4_name: `Work`,
+    pl4_desc: `Whole-production (multi-team) collaboration. Full features: locations, routes, weather, and more.`,
+    pl4_who: `All crew`,
+    final_h2: `Every moment of the shoot, on one Slate.`,
+    final_lead: `Open a project now and invite your whole team.`,
+    final_cta_start: `Start for free`,
+    final_cta_contact: `Contact us`,
+    tag1: `“From scene list to filmography — <b>connect the set</b>.”`,
+    tag2: `“Scattered set info in real time, <b>what remains becomes your career</b>.”`,
+    footer: `© SlateSync — Film-set collaboration platform · Contact: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  ja: {
+    title: `Slate（SlateSync）— 撮影現場をつなぐコラボレーションプラットフォーム`,
+    nav_pricing: `料金プラン`,
+    hero_badge: `撮影現場コラボレーションプラットフォーム · PWA`,
+    hero_h1: `散らばった撮影情報を、<span class="hl">ひとつのSlate</span>へ。<br>残る記録は、<span class="hl">キャリア</span>へ。`,
+    hero_sub: `シーンリスト・香盤表・ロケーション・スタッフをリアルタイムでつなぎ、作品が終わっても記録がフィルモグラフィとして残る撮影コラボレーションプラットフォームです。国ごとの求人・求職掲示板とSlateTalkで、次回作のチームもここで出会えます。`,
+    hero_cta_start: `今すぐ始める`,
+    hero_cta_explore: `機能を見る`,
+    ref_title: `🎁 ウェルカム紹介コード`,
+    ref_desc: `登録時にこのコードを入力すると<b>10,000ポイント</b>が付与されます — 後で作品カードの開設・延長に使えます。`,
+    ref_sub: `すでに紹介してくれた方がいれば、その方のコードを入力してください — お二人ともそれぞれ10,000ポイントずつ付与されます。（電話番号認証の完了時に自動付与）`,
+    hero_note: `アプリのインストール不要でスマホのホーム画面に追加 · Kakao·Naver·TMAP（国内）／Google Maps（海外）を自動連携`,
+    copy_btn: `コピー`,
+    copied_btn: `コピーしました ✓`,
+    why_h2: `現場はいまだにメッセージアプリ・Excel・紙で回っています`,
+    why_lead: `バージョンがぶつかり、順番の変更が伝わらず、位置や天気は毎回調べ直す。Slateは、これらすべてをひとつの画面にまとめます。`,
+    p1_q: `😵 シーンリストや香盤表があちこちに散らばる`,
+    p1_a: `単一プラットフォームで<b>リアルタイム同期</b> · チームごとに自動反映`,
+    p2_q: `🔁 順番変更・OMITを現場で伝えられない`,
+    p2_a: `開始/終了・OMIT・順番変更・シーン追加が<b>全チームにリアルタイム</b>`,
+    p3_q: `📍 現場の位置・道案内の共有が面倒`,
+    p3_a: `住所をワンタップで<b>ナビ起動</b> · チェックした現場の<b>車両ルート</b>`,
+    p4_q: `🌧️ 天気で撮影が飛ぶ`,
+    p4_a: `<b>15日間の撮影困難予報</b>を地図ピン・現場リストにバッジで表示`,
+    p5_q: `🧑‍🤝‍🧑 急にチーム・スタッフを探す場所がない`,
+    p5_a: `<b>国ごとの求人・求職掲示板</b> · 履歴書でアプリ内から直接応募 · <b>SlateTalk</b>で1:1連絡`,
+    p6_q: `📇 履歴書の虚偽経歴を見抜けない`,
+    p6_a: `Slateのフィルモグラフィは<b>実際に作品へ参加してこそ</b>残る記録 — <b>虚偽経歴は原理的に不可能</b>`,
+    feat_h2: `撮影の現場そのままに、必要な機能だけ`,
+    f1_t: `シーンリスト`,
+    f1_d: `助監督視点のシーン整理表（オリジナル＋チームごとのコピー）。時制（Day）・登場人物・美術・衣装/メイクのカラムまで。`,
+    f2_t: `香盤表`,
+    f2_d: `回次ごとのシーン編成と順番変更・追加、スタッフ連絡先（タップで即発信）まで、本物のコールシートそのまま。PDF・Excel書き出し、印刷用レイアウト。`,
+    f3_t: `現場進行`,
+    f3_d: `開始/終了タイムスタンプ・OMITを、進行権限者がリアルタイムで。全チームに即時反映。`,
+    f4_t: `ロケーション & ルート`,
+    f4_d: `住所検索→ピン自動配置、シーンと現場の割り当て、車両ルート、現場住所タップでナビ起動。`,
+    f5_t: `天気リスク`,
+    f5_d: `座標ベースの15日間予報。韓国は気象庁の精密予報で補強し、困難日をピン・リストに警告表示。`,
+    f6_t: `フィルモグラフィ`,
+    f6_d: `作品が終わっても記録を保存・閲覧。個人ポスターアルバムでキャリアを資産化 — 求人・求職での経歴証明に。`,
+    f7_t: `求人・求職掲示板`,
+    f7_d: `国ごとの掲示板で映画・ドラマ・広告のスタッフ募集と求職。現場種別・チーム別の分類・フィルター、履歴書（PDF・Word）でアプリ内から直接応募 — 投稿者だけが閲覧。求職者のフィルモグラフィは<b style="color:var(--gold)">実際の参加だけで積み上がる記録</b>なので、虚偽経歴がありません。`,
+    f8_t: `SlateTalk`,
+    f8_d: `アプリ内の1:1メッセンジャー。投稿や応募者にすぐ連絡でき、電話番号を非公開のままでもやり取り可能。新着メッセージはプッシュでお知らせ。`,
+    f9_t: `つながり写真を、撮ったその場でそのシーンへ`,
+    f9_d: `写真を撮って後からシーン番号や俳優を探して整理する時間は、もう終わり。シーンリストの各シーンに人物・小道具・現場フォルダを作り、撮影と同時にその場で保存・記録しましょう。<b style="color:var(--gold)">フォルダ複製</b>で、繰り返す連結資料も一度に。`,
+    how_h2: `招待コードひとつで、全チームが同じ画面`,
+    s1_t: `作品を開設`,
+    s1_d: `作品カードを作り、チームを編成します。`,
+    s2_t: `招待コードで参加`,
+    s2_d: `スタッフがコードで参加し、役職（メイク班長・ラインPDなど）まで登録 → メンバータブがそのままスタッフリストに。`,
+    s3_t: `シーンリスト・香盤表を配布`,
+    s3_d: `演出チームがオリジナルを管理し、各チームがリアルタイムで確認。`,
+    s4_t: `現場進行・記録`,
+    s4_d: `進行・ルート・天気・資料をひとつの場所で、終わればフィルモグラフィへ。`,
+    band1_n: `リアルタイム`,
+    band1_l: `チーム権限ベースの同期（Firestore）`,
+    band2_n: `国内・海外`,
+    band2_l: `登録国ごとに地図・ナビを自動分岐`,
+    band3_n: `インストール型PWA`,
+    band3_l: `アプリストア不要でホーム画面インストール・オフライン`,
+    price_h2: `規模に合わせて選べます`,
+    price_lead: `月額サブスクリプション（税込の単一価格）· いつでも解約。今は無料トライアル期間 — すべてのプランを0円でお試しいただけます。求人・求職掲示板とSlateTalkは<b style="color:var(--gold)">登録するだけで無料</b>です。`,
+    pl1_name: `ベーシックプラン`,
+    pl1_desc: `フィルモグラフィの閲覧・ダウンロード。まずは自分のキャリア記録から。`,
+    pl1_who: `個人 · 閲覧中心`,
+    pl2_name: `個人プラン`,
+    pl2_desc: `1人専用のワークスペース。自分だけのシーンリスト・香盤表を管理。`,
+    pl2_who: `1人作業`,
+    pl3_name: `チームプラン`,
+    pl3_desc: `単一チームの共同作業。パート単位のコラボに最適。`,
+    pl3_who: `1チーム`,
+    pl4_name: `作品プラン`,
+    pl4_desc: `作品全体（複数チーム）のコラボ。ロケーション・ルート・天気などフル機能。`,
+    pl4_who: `全スタッフ協業`,
+    final_h2: `撮影のすべての瞬間を、ひとつのSlateに。`,
+    final_lead: `今すぐ作品を開設して、全チームを招待してみましょう。`,
+    final_cta_start: `無料で始める`,
+    final_cta_contact: `導入のお問い合わせ`,
+    tag1: `「シーンリストからフィルモグラフィまで — <b>現場をつなぐ</b>。」`,
+    tag2: `「散らばった撮影情報をリアルタイムに、<b>残る記録はキャリアへ</b>。」`,
+    footer: `© SlateSync — 撮影現場コラボレーションプラットフォーム · お問い合わせ：パク・ヨンジン +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  zh: {
+    title: `Slate（SlateSync）— 连接拍摄现场的协作平台`,
+    nav_pricing: `查看价格`,
+    hero_badge: `拍摄现场协作平台 · PWA`,
+    hero_h1: `把散落的拍摄信息，汇聚成<span class="hl">同一块场记板</span>。<br>留下的记录，成为你的<span class="hl">职业履历</span>。`,
+    hero_sub: `实时连接场景表、通告单、场景地点与剧组人员，即使作品杀青，每一条记录也会作为你的作品经历保留下来的拍摄协作平台。通过分国家的求人/求职板和SlateTalk，下一部作品的团队也在这里相遇。`,
+    hero_cta_start: `立即开始`,
+    hero_cta_explore: `了解功能`,
+    ref_title: `🎁 欢迎推荐码`,
+    ref_desc: `注册时输入此码即可获得<b>10,000积分</b> — 日后可用于开设或延长作品卡。`,
+    ref_sub: `如果已有人推荐过你，请输入对方的推荐码 — 双方各得10,000积分。（完成手机号验证后自动到账）`,
+    hero_note: `无需安装应用，添加到手机主屏即可 · Kakao·Naver·TMAP（国内）／Google Maps（海外）自动联动`,
+    copy_btn: `复制`,
+    copied_btn: `已复制 ✓`,
+    why_h2: `现场至今仍靠聊天软件、Excel和纸张运转`,
+    why_lead: `版本相互冲突，顺序变更传不到位，地点和天气每次都要重新查。Slate把这一切汇聚到一个屏幕上。`,
+    p1_q: `😵 场景表和通告单散落各处`,
+    p1_a: `在单一平台上<b>实时同步</b> · 各团队自动同步`,
+    p2_q: `🔁 顺序变更、OMIT无法在现场通知`,
+    p2_a: `开始/结束 · OMIT · 顺序变更 · 加场，全部<b>对全团队实时生效</b>`,
+    p3_q: `📍 现场位置和路线分享很麻烦`,
+    p3_a: `点一下地址即可<b>唤起导航</b> · 已勾选现场的<b>行车路线</b>`,
+    p4_q: `🌧️ 天气把拍摄搅黄`,
+    p4_a: `将<b>15天拍摄风险预报</b>以角标显示在地图图钉和现场列表上`,
+    p5_q: `🧑‍🤝‍🧑 临时找团队和剧组人员没门路`,
+    p5_a: `<b>分国家的求人/求职板</b> · 用简历在应用内直接投递 · <b>SlateTalk</b>一对一联系`,
+    p6_q: `📇 无法筛掉简历里的虚假经历`,
+    p6_a: `Slate作品经历是<b>只有真正参与作品</b>才会留下的记录 — <b>虚假经历从根本上不可能</b>`,
+    feat_h2: `原汁原味的拍摄流程，只留你需要的功能`,
+    f1_t: `场景表`,
+    f1_d: `副导演视角的场景整理表（母本＋各团队副本）。含时态（Day）、人物、美术、服装/化妆等栏目。`,
+    f2_t: `通告单`,
+    f2_d: `按拍摄日编排场次、调整顺序与加场，剧组联系人（一点即拨），就是真正的通告单。支持PDF·Excel导出、打印版式。`,
+    f3_t: `现场进度`,
+    f3_d: `开始/结束时间戳与OMIT，由有权限者实时更新，即刻同步至全团队。`,
+    f4_t: `场景地点 & 路线`,
+    f4_d: `搜索地址→自动落钉，场景与地点绑定，行车路线，点击现场地址即唤起导航。`,
+    f5_t: `天气风险`,
+    f5_d: `基于坐标的15天预报。韩国叠加气象厅精准预报，将高风险日以警告标注在图钉和列表上。`,
+    f6_t: `作品经历`,
+    f6_d: `作品杀青后记录依旧保存、可查阅。用个人海报相册把职业生涯变成资产 — 求职时即经历证明。`,
+    f7_t: `求人/求职板`,
+    f7_d: `在分国家的招聘板上招募与求职电影、剧集、广告剧组人员。按现场类型/团队分类筛选，用简历（PDF·Word）在应用内直接投递 — 仅发帖者可见。求职者的作品经历是<b style="color:var(--gold)">只凭真实参与积累的记录</b>，因此不存在虚假经历。`,
+    f8_t: `SlateTalk`,
+    f8_d: `应用内一对一即时通讯。可直接联系发帖者和应聘者，电话号码不公开也能沟通。新消息以推送提醒。`,
+    f9_t: `连戏照片，拍下的瞬间就归入那场戏`,
+    f9_d: `拍完照再回头找场号、找演员来整理的日子，到此为止。为场景表里的每场戏建立人物、道具、现场文件夹，拍摄的当下就地保存、记录。用<b style="color:var(--gold)">复制文件夹</b>，一次搞定反复出现的连戏素材。`,
+    how_h2: `一个邀请码，全团队同屏`,
+    s1_t: `开设作品`,
+    s1_d: `创建作品卡并组建团队。`,
+    s2_t: `凭邀请码加入`,
+    s2_d: `剧组人员凭码加入，并登记职衔（化妆组长、执行制片等）→ 成员标签页即成剧组名单。`,
+    s3_t: `发布场景表·通告单`,
+    s3_d: `导演组管理母本，各团队实时查看。`,
+    s4_t: `现场进行·记录`,
+    s4_d: `进度、路线、天气、资料集于一处，杀青即成作品经历。`,
+    band1_n: `实时`,
+    band1_l: `基于团队权限的同步（Firestore）`,
+    band2_n: `国内·海外`,
+    band2_l: `按注册国家自动切换地图·导航`,
+    band3_n: `可安装的PWA`,
+    band3_l: `无需应用商店即可装入主屏·离线可用`,
+    price_h2: `按规模选择`,
+    price_lead: `按月订阅（含税单一价）· 随时取消。目前为免费试用期 — 所有套餐均可0元体验。求人/求职板和SlateTalk<b style="color:var(--gold)">只需注册即免费</b>。`,
+    pl1_name: `基础套餐`,
+    pl1_desc: `查阅并下载作品经历。从你自己的职业记录开始。`,
+    pl1_who: `个人 · 以查阅为主`,
+    pl2_name: `个人套餐`,
+    pl2_desc: `一人专属工作间。管理你自己的场景表·通告单。`,
+    pl2_who: `单人作业`,
+    pl3_name: `团队套餐`,
+    pl3_desc: `单一团队协同作业。最适合按部门协作。`,
+    pl3_who: `一个团队`,
+    pl4_name: `作品套餐`,
+    pl4_desc: `整部作品（多团队）协作。场景地点、路线、天气等全功能。`,
+    pl4_who: `全体剧组协作`,
+    final_h2: `拍摄的每一刻，尽在同一块场记板。`,
+    final_lead: `立即开设作品，邀请你的整个团队。`,
+    final_cta_start: `免费开始`,
+    final_cta_contact: `洽谈接入`,
+    tag1: `“从场景表到作品经历 — <b>连接现场</b>。”`,
+    tag2: `“把散落的拍摄信息实时汇聚，<b>留下的记录成为职业履历</b>。”`,
+    footer: `© SlateSync — 拍摄现场协作平台 · 联系：朴永镇 +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  es: {
+    title: `Slate (SlateSync) — La plataforma de colaboración que conecta el set de rodaje`,
+    nav_pricing: `Planes`,
+    hero_badge: `Plataforma de colaboración para sets de rodaje · PWA`,
+    hero_h1: `La información dispersa del set, en <span class="hl">un solo Slate</span>.<br>Y lo que queda se convierte en tu <span class="hl">carrera</span>.`,
+    hero_sub: `Una plataforma de colaboración para producción que conecta en tiempo real listas de escenas, hojas de rodaje, localizaciones y equipo, y conserva cada registro como tu filmografía incluso después de terminar el rodaje. Encuentra el equipo para tu próximo proyecto mediante tablones de empleo por país y SlateTalk.`,
+    hero_cta_start: `Empezar`,
+    hero_cta_explore: `Ver funciones`,
+    ref_title: `🎁 Código de bienvenida`,
+    ref_desc: `Introduce este código al registrarte y consigue <b>10,000 puntos</b>, que podrás usar más adelante para abrir o ampliar la tarjeta de un proyecto.`,
+    ref_sub: `Si alguien ya te recomendó, introduce su código en su lugar: ambos ganáis 10,000 puntos cada uno. (Se acreditan automáticamente al completar la verificación del teléfono.)`,
+    hero_note: `Añádelo a la pantalla de inicio de tu móvil, sin instalar ninguna app · Kakao·Naver·TMAP (Corea) / Google Maps (extranjero) enlazados automáticamente`,
+    copy_btn: `Copiar`,
+    copied_btn: `Copiado ✓`,
+    why_h2: `Los sets todavía funcionan con apps de mensajería, hojas de cálculo y papel`,
+    why_lead: `Las versiones chocan, los cambios de orden no llegan a todos y consultas una y otra vez localizaciones y clima. Slate lo reúne todo en una sola pantalla.`,
+    p1_q: `😵 Listas de escenas y hojas de rodaje dispersas por todas partes`,
+    p1_a: `<b>Sincronización en tiempo real</b> en una sola plataforma · reflejada automáticamente para cada equipo`,
+    p2_q: `🔁 No puedes anunciar reordenaciones ni OMIT en el set`,
+    p2_a: `Inicio/fin · OMIT · reordenar · añadir escena, todo <b>en directo para cada equipo</b>`,
+    p3_q: `📍 Compartir localizaciones e indicaciones es un engorro`,
+    p3_a: `Un toque en la dirección abre la <b>navegación</b> · <b>rutas de conducción</b> para las localizaciones marcadas`,
+    p4_q: `🌧️ El clima arruina el rodaje`,
+    p4_a: `Una <b>previsión de riesgo de rodaje a 15 días</b> como distintivos en los pines del mapa y la lista de localizaciones`,
+    p5_q: `🧑‍🤝‍🧑 No sabes dónde encontrar equipo o gente con prisa`,
+    p5_a: `<b>Tablones de empleo por país</b> · postúlate con tu currículum dentro de la app · contacto 1:1 con <b>SlateTalk</b>`,
+    p6_q: `📇 No hay forma de filtrar créditos falsos en un currículum`,
+    p6_a: `Una filmografía de Slate es un registro que se conserva <b>solo al unirte de verdad a un proyecto</b>: los <b>créditos falsos son sencillamente imposibles</b>`,
+    feat_h2: `Flujos de trabajo reales de producción, solo las funciones que necesitas`,
+    f1_t: `Lista de escenas`,
+    f1_d: `Una tabla de escenas al estilo del AD (maestra + copias por equipo). Columnas de día/hora, personajes, arte, vestuario/maquillaje y muchas más.`,
+    f2_t: `Hoja de rodaje`,
+    f2_d: `Planificación de escenas por día, reordenaciones y añadidos, además de contactos del equipo (toca para llamar): una hoja de rodaje de verdad. Exporta a PDF·Excel, con diseño listo para imprimir.`,
+    f3_t: `Progreso en el set`,
+    f3_d: `Marcas de inicio/fin y OMIT, actualizadas en directo por usuarios autorizados. Se reflejan al instante para cada equipo.`,
+    f4_t: `Localizaciones y rutas`,
+    f4_d: `Busca una dirección → coloca un pin automáticamente, asigna escenas a las localizaciones, rutas de conducción y toca una dirección para navegar.`,
+    f5_t: `Riesgo por clima`,
+    f5_d: `Previsión a 15 días basada en coordenadas. En Corea se añaden previsiones de precisión del KMA, señalando los días de riesgo en pines y listas.`,
+    f6_t: `Filmografía`,
+    f6_d: `Registros conservados y consultables después de terminar el rodaje. Convierte tu carrera en un activo con un álbum de pósteres personal: prueba de experiencia cuando busques trabajo.`,
+    f7_t: `Tablón de empleo`,
+    f7_d: `Recluta y busca trabajo para equipos de cine, series y publicidad en tablones por país. Categorías y filtros por tipo de set/equipo, postúlate con un currículum (PDF·Word) dentro de la app, visible solo para quien publica. La filmografía de quien busca empleo se <b style="color:var(--gold)">construye solo con participación real</b>, así que no hay créditos falsos.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Un mensajero 1:1 integrado. Contacta directamente con anunciantes y candidatos, comunícate incluso con tu número oculto. Los mensajes nuevos llegan como notificación push.`,
+    f9_t: `Fotos de continuidad, directas a la escena`,
+    f9_d: `Se acabó hacer fotos y luego buscar números de escena y actores. Crea carpetas de personajes, atrezo y localizaciones para cada escena en la lista de escenas, y guarda·registra sobre la marcha mientras ruedas. <b style="color:var(--gold)">Duplica carpetas</b> para gestionar de una vez el material de continuidad que se repite.`,
+    how_h2: `Un código de invitación, una pantalla para todo el equipo`,
+    s1_t: `Abre un proyecto`,
+    s1_d: `Crea una tarjeta de proyecto y forma tus equipos.`,
+    s2_t: `Únete con un código`,
+    s2_d: `El equipo se une con un código y registra su cargo (jefe de maquillaje, line PD, etc.) → la pestaña de miembros se convierte en tu lista de equipo.`,
+    s3_t: `Publica listas de escenas y hojas de rodaje`,
+    s3_d: `El equipo de dirección gestiona la maestra; cada equipo la consulta en tiempo real.`,
+    s4_t: `Dirige y registra el set`,
+    s4_d: `Progreso, rutas, clima y materiales en un solo lugar: filmografía cuando termina.`,
+    band1_n: `Tiempo real`,
+    band1_l: `Sincronización según permisos de equipo (Firestore)`,
+    band2_n: `Corea y extranjero`,
+    band2_l: `Mapas·navegación se bifurcan automáticamente según el país de registro`,
+    band3_n: `PWA instalable`,
+    band3_l: `Instalación en la pantalla de inicio sin tienda de apps · sin conexión`,
+    price_h2: `Elige el tamaño que te encaja`,
+    price_lead: `Suscripción mensual (precio único con IVA incluido) · cancela cuando quieras. Ahora mismo es un periodo de prueba gratuito: prueba todos los planes sin coste alguno. El tablón de empleo y SlateTalk son <b style="color:var(--gold)">gratis solo con registrarte</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Consulta y descarga tu filmografía. Empieza desde tu propio registro de carrera.`,
+    pl1_who: `Individual · consulta`,
+    pl2_name: `Solo`,
+    pl2_desc: `Un espacio de trabajo individual. Gestiona tus propias listas de escenas y hojas de rodaje.`,
+    pl2_who: `Trabajo en solitario`,
+    pl3_name: `Team`,
+    pl3_desc: `Trabajo compartido para un solo equipo. Ideal para la colaboración a nivel de departamento.`,
+    pl3_who: `Un equipo`,
+    pl4_name: `Work`,
+    pl4_desc: `Colaboración de toda la producción (varios equipos). Todas las funciones: localizaciones, rutas, clima y más.`,
+    pl4_who: `Todo el equipo`,
+    final_h2: `Cada momento del rodaje, en un solo Slate.`,
+    final_lead: `Abre un proyecto ahora e invita a todo tu equipo.`,
+    final_cta_start: `Empezar gratis`,
+    final_cta_contact: `Contáctanos`,
+    tag1: `“De la lista de escenas a la filmografía: <b>conecta el set</b>.”`,
+    tag2: `“La información dispersa del set en tiempo real, <b>y lo que queda se convierte en tu carrera</b>.”`,
+    footer: `© SlateSync — Plataforma de colaboración para sets de rodaje · Contacto: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  fr: {
+    title: `Slate (SlateSync) — La plateforme collaborative qui relie le plateau de tournage`,
+    nav_pricing: `Tarifs`,
+    hero_badge: `Plateforme collaborative de plateau · PWA`,
+    hero_h1: `Les infos éparpillées du plateau, dans <span class="hl">un seul Slate</span>.<br>Et ce qui reste devient votre <span class="hl">carrière</span>.`,
+    hero_sub: `Une plateforme collaborative de production qui relie en temps réel listes de scènes, feuilles de service, décors et équipe, et conserve chaque trace comme votre filmographie, même une fois le tournage terminé. Trouvez l'équipe de votre prochain projet grâce aux tableaux d'offres par pays et à SlateTalk.`,
+    hero_cta_start: `Commencer`,
+    hero_cta_explore: `Découvrir les fonctions`,
+    ref_title: `🎁 Code de parrainage de bienvenue`,
+    ref_desc: `Saisissez ce code à l'inscription pour gagner <b>10,000 points</b>, utilisables plus tard pour ouvrir ou prolonger la carte d'un projet.`,
+    ref_sub: `Si quelqu'un vous a déjà parrainé, saisissez plutôt son code : vous gagnez chacun 10,000 points. (Crédités automatiquement une fois la vérification du téléphone terminée.)`,
+    hero_note: `Ajoutez-le à l'écran d'accueil de votre téléphone, sans installer d'app · Kakao·Naver·TMAP (Corée) / Google Maps (à l'étranger) liés automatiquement`,
+    copy_btn: `Copier`,
+    copied_btn: `Copié ✓`,
+    why_h2: `Les plateaux fonctionnent encore avec des messageries, des tableurs et du papier`,
+    why_lead: `Les versions s'entrechoquent, les changements d'ordre n'atteignent pas tout le monde, et vous cherchez décors et météo encore et encore. Slate réunit tout sur un seul écran.`,
+    p1_q: `😵 Listes de scènes et feuilles de service éparpillées partout`,
+    p1_a: `<b>Synchronisation en temps réel</b> sur une seule plateforme · répercutée automatiquement pour chaque équipe`,
+    p2_q: `🔁 Impossible d'annoncer un réordonnancement ou un OMIT sur le plateau`,
+    p2_a: `Début/fin · OMIT · réordonner · ajouter une scène, le tout <b>en direct pour chaque équipe</b>`,
+    p3_q: `📍 Partager les décors et les itinéraires est pénible`,
+    p3_a: `Un appui sur l'adresse ouvre la <b>navigation</b> · <b>itinéraires routiers</b> pour les décors cochés`,
+    p4_q: `🌧️ La météo ruine le tournage`,
+    p4_a: `Une <b>prévision de risque de tournage à 15 jours</b> sous forme de badges sur les repères de la carte et la liste des décors`,
+    p5_q: `🧑‍🤝‍🧑 Nulle part où trouver une équipe ou du renfort en urgence`,
+    p5_a: `<b>Tableaux d'offres par pays</b> · postulez avec votre CV dans l'app · contact 1:1 via <b>SlateTalk</b>`,
+    p6_q: `📇 Aucun moyen de filtrer les faux crédits d'un CV`,
+    p6_a: `Une filmographie Slate est une trace conservée <b>uniquement en participant réellement à un projet</b> : les <b>faux crédits sont tout simplement impossibles</b>`,
+    feat_h2: `De vrais flux de production, seulement les fonctions dont vous avez besoin`,
+    f1_t: `Liste de scènes`,
+    f1_d: `Un tableau de scènes façon assistant réalisateur (maître + copies par équipe). Colonnes jour/heure, personnages, décor, costume/maquillage et bien d'autres.`,
+    f2_t: `Feuille de service`,
+    f2_d: `Planification des scènes par jour, réordonnancements et ajouts, plus les contacts de l'équipe (appuyer pour appeler) : une vraie feuille de service. Export en PDF·Excel, mise en page prête à imprimer.`,
+    f3_t: `Suivi sur le plateau`,
+    f3_d: `Horodatage début/fin et OMIT, mis à jour en direct par les utilisateurs autorisés. Répercutés instantanément pour chaque équipe.`,
+    f4_t: `Décors et itinéraires`,
+    f4_d: `Cherchez une adresse → placement automatique d'un repère, affectez des scènes aux décors, itinéraires routiers, appuyez sur une adresse pour la navigation.`,
+    f5_t: `Risque météo`,
+    f5_d: `Prévision à 15 jours basée sur les coordonnées. La Corée ajoute les prévisions de précision du KMA, signalant les jours à risque sur les repères et les listes.`,
+    f6_t: `Filmographie`,
+    f6_d: `Traces conservées et consultables une fois le tournage terminé. Faites de votre carrière un atout avec un album d'affiches personnel : une preuve d'expérience pour votre recherche d'emploi.`,
+    f7_t: `Tableau d'offres`,
+    f7_d: `Recrutez et cherchez du travail pour les équipes de cinéma, de séries et de pub sur des tableaux par pays. Catégories et filtres par type de plateau/équipe, postulez avec un CV (PDF·Word) dans l'app, visible uniquement par l'annonceur. La filmographie d'un candidat se <b style="color:var(--gold)">construit uniquement à partir d'une participation réelle</b>, il n'y a donc aucun faux crédit.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Une messagerie 1:1 intégrée. Contactez directement annonceurs et candidats, communiquez même avec votre numéro masqué. Les nouveaux messages arrivent en notification push.`,
+    f9_t: `Photos de continuité, directement à la scène`,
+    f9_d: `Fini de prendre des photos puis de chercher ensuite numéros de scène et acteurs. Créez des dossiers personnages, accessoires et décors pour chaque scène dans la liste de scènes, et enregistrez·consignez sur place pendant le tournage. <b style="color:var(--gold)">Dupliquez des dossiers</b> pour gérer d'un coup le matériel de continuité récurrent.`,
+    how_h2: `Un seul code d'invitation, un seul écran pour toute l'équipe`,
+    s1_t: `Ouvrez un projet`,
+    s1_d: `Créez une carte de projet et constituez vos équipes.`,
+    s2_t: `Rejoignez avec un code`,
+    s2_d: `L'équipe rejoint avec un code et enregistre son poste (chef maquilleur, line PD, etc.) → l'onglet membres devient votre liste d'équipe.`,
+    s3_t: `Publiez listes de scènes et feuilles de service`,
+    s3_d: `L'équipe de réalisation gère la version maître ; chaque équipe la consulte en temps réel.`,
+    s4_t: `Menez et enregistrez le plateau`,
+    s4_d: `Suivi, itinéraires, météo et matériel au même endroit : filmographie une fois terminé.`,
+    band1_n: `Temps réel`,
+    band1_l: `Synchronisation selon les permissions d'équipe (Firestore)`,
+    band2_n: `Corée et étranger`,
+    band2_l: `Cartes·navigation se répartissent automatiquement selon le pays d'inscription`,
+    band3_n: `PWA installable`,
+    band3_l: `Installation sur l'écran d'accueil sans magasin d'apps · hors ligne`,
+    price_h2: `Choisissez la taille qui vous convient`,
+    price_lead: `Abonnement mensuel (prix unique TVA incluse) · annulable à tout moment. C'est actuellement une période d'essai gratuite : essayez tous les plans sans frais. Le tableau d'offres et SlateTalk sont <b style="color:var(--gold)">gratuits rien qu'en vous inscrivant</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Consultez et téléchargez votre filmographie. Partez de votre propre parcours.`,
+    pl1_who: `Individuel · consultation`,
+    pl2_name: `Solo`,
+    pl2_desc: `Un espace de travail individuel. Gérez vos propres listes de scènes et feuilles de service.`,
+    pl2_who: `Travail en solo`,
+    pl3_name: `Team`,
+    pl3_desc: `Travail partagé pour une seule équipe. Idéal pour la collaboration au niveau d'un département.`,
+    pl3_who: `Une équipe`,
+    pl4_name: `Work`,
+    pl4_desc: `Collaboration de toute la production (plusieurs équipes). Toutes les fonctions : décors, itinéraires, météo et plus encore.`,
+    pl4_who: `Toute l'équipe`,
+    final_h2: `Chaque instant du tournage, sur un seul Slate.`,
+    final_lead: `Ouvrez un projet dès maintenant et invitez toute votre équipe.`,
+    final_cta_start: `Commencer gratuitement`,
+    final_cta_contact: `Nous contacter`,
+    tag1: `« De la liste de scènes à la filmographie : <b>reliez le plateau</b>. »`,
+    tag2: `« Les infos éparpillées du plateau en temps réel, <b>et ce qui reste devient votre carrière</b>. »`,
+    footer: `© SlateSync — Plateforme collaborative de plateau · Contact : Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  de: {
+    title: `Slate (SlateSync) — Die Kollaborationsplattform, die das Filmset verbindet`,
+    nav_pricing: `Preise`,
+    hero_badge: `Kollaborationsplattform fürs Filmset · PWA`,
+    hero_h1: `Verstreute Set-Infos in <span class="hl">einer Slate</span>.<br>Was bleibt, wird deine <span class="hl">Karriere</span>.`,
+    hero_sub: `Eine Produktions-Kollaborationsplattform, die Szenenlisten, Tagesdispos, Motive und Crew in Echtzeit verknüpft — und jeden Eintrag auch nach Drehschluss als deine Filmografie bewahrt. Finde über länderbasierte Jobbörsen und SlateTalk das Team für dein nächstes Projekt.`,
+    hero_cta_start: `Jetzt starten`,
+    hero_cta_explore: `Funktionen entdecken`,
+    ref_title: `🎁 Willkommens-Empfehlungscode`,
+    ref_desc: `Gib diesen Code bei der Anmeldung ein und erhalte <b>10,000 Punkte</b> — später einsetzbar, um eine Projektkarte zu öffnen oder zu verlängern.`,
+    ref_sub: `Falls dich schon jemand empfohlen hat, gib stattdessen dessen Code ein — ihr erhaltet beide je 10,000 Punkte. (Wird automatisch gutgeschrieben, sobald die Telefonverifizierung abgeschlossen ist.)`,
+    hero_note: `Zum Startbildschirm deines Handys hinzufügen, keine App-Installation nötig · Kakao·Naver·TMAP (Korea) / Google Maps (Ausland) automatisch verlinkt`,
+    copy_btn: `Kopieren`,
+    copied_btn: `Kopiert ✓`,
+    why_h2: `Sets laufen noch immer über Messenger, Tabellen und Papier`,
+    why_lead: `Versionen kollidieren, Umstellungen erreichen nicht alle, und Motive und Wetter schlägst du immer wieder nach. Slate bringt alles auf einen Bildschirm.`,
+    p1_q: `😵 Szenenlisten und Tagesdispos überall verstreut`,
+    p1_a: `<b>Echtzeit-Sync</b> auf einer Plattform · automatisch für jedes Team übernommen`,
+    p2_q: `🔁 Umstellungen oder OMIT lassen sich am Set nicht ansagen`,
+    p2_a: `Start/Ende · OMIT · Umsortieren · Szene hinzufügen, alles <b>live für jedes Team</b>`,
+    p3_q: `📍 Motive und Anfahrt zu teilen ist mühsam`,
+    p3_a: `Ein Tipp auf die Adresse öffnet die <b>Navigation</b> · <b>Fahrtrouten</b> für markierte Motive`,
+    p4_q: `🌧️ Wetter ruiniert den Dreh`,
+    p4_a: `Eine <b>15-Tage-Drehrisiko-Prognose</b> als Badges auf Kartenpins und in der Motivliste`,
+    p5_q: `🧑‍🤝‍🧑 In Eile keine Crew oder kein Team zu finden`,
+    p5_a: `<b>Länderbasierte Jobbörsen</b> · mit deinem Lebenslauf direkt in der App bewerben · <b>SlateTalk</b> 1:1-Kontakt`,
+    p6_q: `📇 Keine Möglichkeit, gefälschte Lebenslauf-Referenzen auszusortieren`,
+    p6_a: `Eine Slate-Filmografie ist ein Eintrag, der <b>nur durch echte Projektteilnahme</b> entsteht — <b>gefälschte Referenzen sind schlicht unmöglich</b>`,
+    feat_h2: `Echte Produktionsabläufe, nur die Funktionen, die du brauchst`,
+    f1_t: `Szenenliste`,
+    f1_d: `Eine Szenentabelle im Regieassistenz-Stil (Master + Kopien pro Team). Tag/Zeit, Figuren, Ausstattung, Kostüm/Maske und weitere Spalten.`,
+    f2_t: `Tagesdispo`,
+    f2_d: `Szenenplanung pro Tag, Umsortieren und Ergänzen, dazu Staff-Kontakte (zum Anrufen tippen) — eine echte Disposition. Export als PDF·Excel, druckfertiges Layout.`,
+    f3_t: `Fortschritt am Set`,
+    f3_d: `Start-/Endzeitstempel und OMIT, live aktualisiert von berechtigten Nutzern. Sofort für jedes Team übernommen.`,
+    f4_t: `Motive & Routen`,
+    f4_d: `Adresse suchen → Pin automatisch setzen, Szenen den Motiven zuordnen, Fahrtrouten, auf die Adresse tippen für Navigation.`,
+    f5_t: `Wetterrisiko`,
+    f5_d: `Koordinatenbasierte 15-Tage-Prognose. In Korea ergänzt um präzise KMA-Vorhersagen, die riskante Tage auf Pins und in Listen markieren.`,
+    f6_t: `Filmografie`,
+    f6_d: `Einträge bleiben nach Drehschluss erhalten und einsehbar. Mach deine Karriere zum Kapital mit einem persönlichen Poster-Album — Erfahrungsnachweis bei der Jobsuche.`,
+    f7_t: `Jobbörse`,
+    f7_d: `Rekrutiere und suche nach Crew für Film, Serie und Werbung auf länderbasierten Boards. Kategorien und Filter nach Set-Typ/Team, mit Lebenslauf (PDF·Word) direkt in der App bewerben — nur für den Inserenten sichtbar. Die Filmografie eines Bewerbers <b style="color:var(--gold)">entsteht nur aus echter Teilnahme</b>, also gibt es keine gefälschten Referenzen.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Ein integrierter 1:1-Messenger. Kontaktiere Inserenten und Bewerber direkt, kommuniziere auch mit verborgener Nummer. Neue Nachrichten kommen als Push.`,
+    f9_t: `Continuity-Fotos, direkt zur Szene`,
+    f9_d: `Kein Fotografieren mehr und späteres Suchen nach Szenennummern und Darstellern. Lege in der Szenenliste für jede Szene Figuren-, Requisiten- und Motiv-Ordner an und speichere·protokolliere direkt vor Ort beim Dreh. <b style="color:var(--gold)">Ordner duplizieren</b>, um wiederkehrendes Continuity-Material auf einmal zu erfassen.`,
+    how_h2: `Ein Einladungscode, ein Bildschirm fürs ganze Team`,
+    s1_t: `Ein Projekt eröffnen`,
+    s1_d: `Erstelle eine Projektkarte und baue deine Teams auf.`,
+    s2_t: `Mit einem Code beitreten`,
+    s2_d: `Die Crew tritt per Code bei und registriert ihre Funktion (Maskenchef, Line PD usw.) → der Mitglieder-Tab wird zu deiner Crewliste.`,
+    s3_t: `Szenenlisten & Tagesdispos veröffentlichen`,
+    s3_d: `Das Regieteam verwaltet den Master; jedes Team prüft ihn in Echtzeit.`,
+    s4_t: `Set steuern & dokumentieren`,
+    s4_d: `Fortschritt, Routen, Wetter und Material an einem Ort — Filmografie zum Drehschluss.`,
+    band1_n: `Echtzeit`,
+    band1_l: `Sync nach Teamberechtigung (Firestore)`,
+    band2_n: `Korea & Ausland`,
+    band2_l: `Karten·Navigation verzweigen automatisch nach Anmeldeland`,
+    band3_n: `Installierbare PWA`,
+    band3_l: `Installation auf dem Startbildschirm ohne App-Store · offline`,
+    price_h2: `Wähle die passende Größe`,
+    price_lead: `Monatsabo (ein Preis inkl. MwSt.) · jederzeit kündbar. Aktuell ist kostenlose Testphase — probiere jeden Tarif ohne Kosten. Jobbörse und SlateTalk sind <b style="color:var(--gold)">allein durch die Anmeldung kostenlos</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Filmografie ansehen und herunterladen. Starte mit deinem eigenen Karriere-Eintrag.`,
+    pl1_who: `Einzelperson · Ansicht`,
+    pl2_name: `Solo`,
+    pl2_desc: `Ein Solo-Arbeitsbereich. Verwalte deine eigenen Szenenlisten und Tagesdispos.`,
+    pl2_who: `Solo-Arbeit`,
+    pl3_name: `Team`,
+    pl3_desc: `Geteilte Arbeit für ein einzelnes Team. Ideal für Zusammenarbeit auf Part-Ebene.`,
+    pl3_who: `Ein Team`,
+    pl4_name: `Work`,
+    pl4_desc: `Zusammenarbeit für die ganze Produktion (mehrere Teams). Voller Funktionsumfang: Motive, Routen, Wetter und mehr.`,
+    pl4_who: `Ganze Crew`,
+    final_h2: `Jeder Moment des Drehs, auf einer Slate.`,
+    final_lead: `Eröffne jetzt ein Projekt und lade dein ganzes Team ein.`,
+    final_cta_start: `Kostenlos starten`,
+    final_cta_contact: `Kontakt`,
+    tag1: `„Von der Szenenliste zur Filmografie — <b>verbinde das Set</b>.“`,
+    tag2: `„Verstreute Set-Infos in Echtzeit, <b>was bleibt, wird deine Karriere</b>.“`,
+    footer: `© SlateSync — Kollaborationsplattform fürs Filmset · Kontakt: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  pt: {
+    title: `Slate (SlateSync) — A plataforma de colaboração que conecta o set de filmagem`,
+    nav_pricing: `Preços`,
+    hero_badge: `Plataforma de colaboração para set de filmagem · PWA`,
+    hero_h1: `Informações espalhadas do set, em <span class="hl">um só Slate</span>.<br>O que fica vira a sua <span class="hl">carreira</span>.`,
+    hero_sub: `Uma plataforma de colaboração de produção que conecta listas de cenas, ordens do dia, locações e equipe em tempo real — e guarda cada registro como a sua filmografia mesmo depois que a filmagem acaba. Encontre a equipe do seu próximo projeto por meio de murais de vagas por país e do SlateTalk.`,
+    hero_cta_start: `Começar`,
+    hero_cta_explore: `Explorar recursos`,
+    ref_title: `🎁 Código de indicação de boas-vindas`,
+    ref_desc: `Digite este código ao se cadastrar e ganhe <b>10,000 pontos</b> — usáveis depois para abrir ou estender um cartão de projeto.`,
+    ref_sub: `Se alguém já indicou você, digite o código dessa pessoa — vocês dois ganham 10,000 pontos cada. (Creditado automaticamente assim que a verificação por telefone for concluída.)`,
+    hero_note: `Adicione à tela inicial do celular, sem precisar instalar app · Kakao·Naver·TMAP (Coreia) / Google Maps (exterior) vinculados automaticamente`,
+    copy_btn: `Copiar`,
+    copied_btn: `Copiado ✓`,
+    why_h2: `Os sets ainda funcionam com apps de mensagem, planilhas e papel`,
+    why_lead: `As versões se chocam, mudanças na ordem não chegam a todos, e você consulta locações e clima repetidas vezes. O Slate reúne tudo em uma só tela.`,
+    p1_q: `😵 Listas de cenas e ordens do dia espalhadas por toda parte`,
+    p1_a: `<b>Sincronização em tempo real</b> em uma só plataforma · refletida automaticamente para cada equipe`,
+    p2_q: `🔁 Não dá para anunciar reordenação ou OMIT no set`,
+    p2_a: `Início/fim · OMIT · reordenar · adicionar cena, tudo <b>ao vivo para cada equipe</b>`,
+    p3_q: `📍 Compartilhar locações e trajetos é um trabalho`,
+    p3_a: `Um toque no endereço abre a <b>navegação</b> · <b>rotas de carro</b> para as locações marcadas`,
+    p4_q: `🌧️ O clima arruína a filmagem`,
+    p4_a: `Uma <b>previsão de risco de filmagem de 15 dias</b> como selos nos pins do mapa e na lista de locações`,
+    p5_q: `🧑‍🤝‍🧑 Nenhum lugar para achar equipe ou time às pressas`,
+    p5_a: `<b>Murais de vagas por país</b> · candidate-se com seu currículo no app · contato 1:1 pelo <b>SlateTalk</b>`,
+    p6_q: `📇 Sem como filtrar créditos falsos de currículo`,
+    p6_a: `Uma filmografia Slate é um registro mantido <b>apenas ao participar de fato de um projeto</b> — <b>créditos falsos são simplesmente impossíveis</b>`,
+    feat_h2: `Fluxos de produção reais, só os recursos de que você precisa`,
+    f1_t: `Lista de cenas`,
+    f1_d: `Uma tabela de cenas no estilo do assistente de direção (master + cópias por equipe). Dia/hora, personagens, arte, colunas de figurino/maquiagem e mais.`,
+    f2_t: `Ordem do dia`,
+    f2_d: `Planejamento de cenas por dia, reordenação e acréscimos, além de contatos da equipe (toque para ligar) — uma ordem do dia de verdade. Exporte para PDF·Excel, layout pronto para impressão.`,
+    f3_t: `Andamento no set`,
+    f3_d: `Marcações de início/fim e OMIT, atualizadas ao vivo por usuários autorizados. Refletidas na hora para cada equipe.`,
+    f4_t: `Locações & rotas`,
+    f4_d: `Busque um endereço → posicione um pin automaticamente, atribua cenas às locações, rotas de carro, toque no endereço para navegar.`,
+    f5_t: `Risco climático`,
+    f5_d: `Previsão de 15 dias baseada em coordenadas. Na Coreia, acrescenta previsões precisas do KMA, sinalizando dias de risco nos pins e nas listas.`,
+    f6_t: `Filmografia`,
+    f6_d: `Registros preservados e visíveis depois que a filmagem acaba. Transforme sua carreira em um ativo com um álbum de pôsteres pessoal — prova de experiência na hora de buscar trabalho.`,
+    f7_t: `Mural de vagas`,
+    f7_d: `Recrute e busque vagas para equipes de cinema, novela e publicidade em murais por país. Categorias e filtros por tipo de set/equipe, candidate-se com currículo (PDF·Word) no app — visível só para quem publicou. A filmografia de um candidato é <b style="color:var(--gold)">construída apenas com participação real</b>, então não há créditos falsos.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Um mensageiro 1:1 integrado. Fale com quem publicou e com candidatos diretamente, comunique-se mesmo com o número oculto. Novas mensagens chegam como push.`,
+    f9_t: `Fotos de continuidade, direto na cena`,
+    f9_d: `Chega de tirar fotos e depois caçar números de cena e atores. Crie pastas de personagem, objeto e locação para cada cena na lista de cenas, e salve·registre ali mesmo enquanto filma. <b style="color:var(--gold)">Duplique pastas</b> para tratar de uma vez o material de continuidade recorrente.`,
+    how_h2: `Um código de convite, uma tela para a equipe inteira`,
+    s1_t: `Abra um projeto`,
+    s1_d: `Crie um cartão de projeto e monte suas equipes.`,
+    s2_t: `Entre com um código`,
+    s2_d: `A equipe entra com um código e registra seu cargo (Chefe de Maquiagem, Line PD, etc.) → a aba de membros vira a sua lista de equipe.`,
+    s3_t: `Publique listas de cenas & ordens do dia`,
+    s3_d: `A equipe de direção gerencia o master; cada equipe confere em tempo real.`,
+    s4_t: `Conduza & registre o set`,
+    s4_d: `Andamento, rotas, clima e materiais em um só lugar — filmografia quando tudo acaba.`,
+    band1_n: `Tempo real`,
+    band1_l: `Sincronização por permissão de equipe (Firestore)`,
+    band2_n: `Coreia & exterior`,
+    band2_l: `Mapas·navegação se ramificam automaticamente pelo país de cadastro`,
+    band3_n: `PWA instalável`,
+    band3_l: `Instalação na tela inicial sem loja de apps · offline`,
+    price_h2: `Escolha o tamanho que combina`,
+    price_lead: `Assinatura mensal (preço único com impostos incluídos) · cancele quando quiser. Agora é período de teste gratuito — experimente todos os planos sem custo. O mural de vagas e o SlateTalk são <b style="color:var(--gold)">grátis só por se cadastrar</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Veja e baixe a filmografia. Comece pelo seu próprio registro de carreira.`,
+    pl1_who: `Individual · visualização`,
+    pl2_name: `Solo`,
+    pl2_desc: `Um espaço de trabalho solo. Gerencie suas próprias listas de cenas e ordens do dia.`,
+    pl2_who: `Trabalho solo`,
+    pl3_name: `Team`,
+    pl3_desc: `Trabalho compartilhado para uma única equipe. Ideal para colaboração no nível de cada área.`,
+    pl3_who: `Uma equipe`,
+    pl4_name: `Work`,
+    pl4_desc: `Colaboração de toda a produção (várias equipes). Recursos completos: locações, rotas, clima e mais.`,
+    pl4_who: `Toda a equipe`,
+    final_h2: `Cada momento da filmagem, em um só Slate.`,
+    final_lead: `Abra um projeto agora e convide a sua equipe inteira.`,
+    final_cta_start: `Comece grátis`,
+    final_cta_contact: `Fale conosco`,
+    tag1: `“Da lista de cenas à filmografia — <b>conecte o set</b>.”`,
+    tag2: `“Informações espalhadas do set em tempo real, <b>o que fica vira a sua carreira</b>.”`,
+    footer: `© SlateSync — Plataforma de colaboração para set de filmagem · Contato: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  id: {
+    title: `Slate (SlateSync) — Platform kolaborasi yang menghubungkan lokasi syuting`,
+    nav_pricing: `Harga`,
+    hero_badge: `Platform kolaborasi lokasi syuting · PWA`,
+    hero_h1: `Info lokasi yang tercerai-berai, jadi <span class="hl">satu Slate</span>.<br>Yang tersisa menjadi <span class="hl">karier</span> Anda.`,
+    hero_sub: `Platform kolaborasi produksi yang menghubungkan daftar scene, call sheet, lokasi, dan kru secara real-time — dan menyimpan setiap catatan sebagai filmografi Anda bahkan setelah syuting selesai. Temukan tim untuk proyek Anda berikutnya melalui papan lowongan per negara dan SlateTalk.`,
+    hero_cta_start: `Mulai sekarang`,
+    hero_cta_explore: `Jelajahi fitur`,
+    ref_title: `🎁 Kode referral selamat datang`,
+    ref_desc: `Masukkan kode ini saat mendaftar untuk mendapatkan <b>10,000 poin</b> — bisa dipakai nanti untuk membuka atau memperpanjang kartu proyek.`,
+    ref_sub: `Jika seseorang sudah mereferensikan Anda, masukkan kode mereka — Anda berdua masing-masing mendapat 10,000 poin. (Otomatis dikreditkan setelah verifikasi nomor telepon selesai.)`,
+    hero_note: `Tambahkan ke layar utama ponsel Anda, tanpa perlu instal aplikasi · Kakao·Naver·TMAP (Korea) / Google Maps (luar negeri) otomatis terhubung`,
+    copy_btn: `Salin`,
+    copied_btn: `Tersalin ✓`,
+    why_h2: `Lokasi syuting masih berjalan dengan aplikasi pesan, spreadsheet, dan kertas`,
+    why_lead: `Versi berbenturan, perubahan urutan tidak sampai ke semua orang, dan Anda mencari lokasi serta cuaca berulang kali. Slate menyatukan semuanya dalam satu layar.`,
+    p1_q: `😵 Daftar scene dan call sheet tercerai-berai di mana-mana`,
+    p1_a: `<b>Sinkronisasi real-time</b> dalam satu platform · otomatis terlihat oleh setiap tim`,
+    p2_q: `🔁 Tidak bisa mengumumkan perubahan urutan atau OMIT di lokasi`,
+    p2_a: `Mulai/selesai · OMIT · ubah urutan · tambah scene, semua <b>langsung untuk setiap tim</b>`,
+    p3_q: `📍 Berbagi lokasi dan arah jalan itu merepotkan`,
+    p3_a: `Satu ketuk pada alamat membuka <b>navigasi</b> · <b>rute berkendara</b> untuk lokasi yang dicentang`,
+    p4_q: `🌧️ Cuaca merusak syuting`,
+    p4_a: `<b>Prakiraan risiko syuting 15 hari</b> sebagai badge pada pin peta dan daftar lokasi`,
+    p5_q: `🧑‍🤝‍🧑 Tidak ada tempat mencari kru atau tim saat mendesak`,
+    p5_a: `<b>Papan lowongan per negara</b> · lamar dengan résumé Anda di aplikasi · <b>SlateTalk</b> kontak 1:1`,
+    p6_q: `📇 Tidak ada cara menyaring kredit résumé palsu`,
+    p6_a: `Filmografi Slate adalah catatan yang tersimpan <b>hanya dengan benar-benar bergabung dalam proyek</b> — <b>kredit palsu sama sekali mustahil</b>`,
+    feat_h2: `Alur kerja produksi nyata, hanya fitur yang Anda butuhkan`,
+    f1_t: `Daftar Scene`,
+    f1_d: `Tabel scene gaya AD (master + salinan per tim). Hari/waktu, karakter, artistik, kolom kostum/riasan, dan lainnya.`,
+    f2_t: `Call Sheet`,
+    f2_d: `Perencanaan scene per hari, pengubahan urutan dan penambahan, plus kontak staf (ketuk untuk menelepon) — call sheet sungguhan. Ekspor ke PDF·Excel, tata letak siap cetak.`,
+    f3_t: `Progres di Lokasi`,
+    f3_d: `Cap waktu mulai/selesai dan OMIT, diperbarui langsung oleh pengguna berwenang. Langsung terlihat oleh setiap tim.`,
+    f4_t: `Lokasi & Rute`,
+    f4_d: `Cari alamat → pin otomatis, tetapkan scene ke lokasi, rute berkendara, ketuk alamat untuk navigasi.`,
+    f5_t: `Risiko Cuaca`,
+    f5_d: `Prakiraan 15 hari berbasis koordinat. Korea menambahkan prakiraan presisi KMA, menandai hari berisiko pada pin dan daftar.`,
+    f6_t: `Filmografi`,
+    f6_d: `Catatan tersimpan dan bisa dilihat setelah syuting selesai. Ubah karier Anda menjadi aset dengan album poster pribadi — bukti pengalaman saat mencari kerja.`,
+    f7_t: `Papan Lowongan`,
+    f7_d: `Rekrut dan cari kerja untuk kru film, drama, dan iklan di papan per negara. Kategori dan filter jenis lokasi/tim, lamar dengan résumé (PDF·Word) di aplikasi — hanya terlihat oleh pemasang. Filmografi pencari kerja <b style="color:var(--gold)">dibangun hanya dari partisipasi nyata</b>, jadi tidak ada kredit palsu.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Messenger 1:1 bawaan. Hubungi pemasang dan pelamar langsung, berkomunikasi bahkan dengan nomor Anda tersembunyi. Pesan baru masuk sebagai push.`,
+    f9_t: `Foto continuity, langsung ke scene-nya`,
+    f9_d: `Tidak perlu lagi memotret lalu mencari nomor scene dan aktor kemudian. Buat folder karakter, properti, dan lokasi untuk setiap scene di daftar scene, lalu simpan·catat langsung di tempat saat syuting. <b style="color:var(--gold)">Gandakan folder</b> untuk menangani materi continuity berulang sekaligus.`,
+    how_h2: `Satu kode undangan, satu layar untuk seluruh tim`,
+    s1_t: `Buka proyek`,
+    s1_d: `Buat kartu proyek dan bentuk tim Anda.`,
+    s2_t: `Gabung dengan kode`,
+    s2_d: `Kru bergabung dengan kode dan mendaftarkan jabatan mereka (Kepala Riasan, Line PD, dll.) → tab anggota menjadi daftar kru Anda.`,
+    s3_t: `Terbitkan daftar scene & call sheet`,
+    s3_d: `Tim penyutradaraan mengelola master; setiap tim memeriksanya secara real-time.`,
+    s4_t: `Jalankan & catat lokasi`,
+    s4_d: `Progres, rute, cuaca, dan materi dalam satu tempat — jadi filmografi saat syuting selesai.`,
+    band1_n: `Real-time`,
+    band1_l: `Sinkronisasi berbasis izin tim (Firestore)`,
+    band2_n: `Korea & luar negeri`,
+    band2_l: `Peta·navigasi otomatis menyesuaikan negara pendaftaran`,
+    band3_n: `PWA yang bisa diinstal`,
+    band3_l: `Instal ke layar utama tanpa app store · offline`,
+    price_h2: `Pilih ukuran yang pas`,
+    price_lead: `Langganan bulanan (satu harga sudah termasuk PPN) · batalkan kapan saja. Saat ini masa uji coba gratis — coba semua paket tanpa biaya. Papan lowongan dan SlateTalk <b style="color:var(--gold)">gratis cukup dengan mendaftar</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Lihat dan unduh filmografi. Mulai dari catatan karier Anda sendiri.`,
+    pl1_who: `Individu · melihat`,
+    pl2_name: `Solo`,
+    pl2_desc: `Ruang kerja solo. Kelola daftar scene dan call sheet Anda sendiri.`,
+    pl2_who: `Kerja solo`,
+    pl3_name: `Team`,
+    pl3_desc: `Kerja bersama untuk satu tim. Terbaik untuk kolaborasi tingkat departemen.`,
+    pl3_who: `Satu tim`,
+    pl4_name: `Work`,
+    pl4_desc: `Kolaborasi seluruh produksi (multi-tim). Fitur lengkap: lokasi, rute, cuaca, dan lainnya.`,
+    pl4_who: `Semua kru`,
+    final_h2: `Setiap momen syuting, dalam satu Slate.`,
+    final_lead: `Buka proyek sekarang dan undang seluruh tim Anda.`,
+    final_cta_start: `Mulai gratis`,
+    final_cta_contact: `Hubungi kami`,
+    tag1: `"Dari daftar scene hingga filmografi — <b>hubungkan lokasi syuting</b>."`,
+    tag2: `"Info lokasi yang tercerai-berai jadi real-time, <b>yang tersisa menjadi karier Anda</b>."`,
+    footer: `© SlateSync — Platform kolaborasi lokasi syuting · Kontak: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+  vi: {
+    title: `Slate (SlateSync) — Nền tảng cộng tác kết nối phim trường`,
+    nav_pricing: `Bảng giá`,
+    hero_badge: `Nền tảng cộng tác phim trường · PWA`,
+    hero_h1: `Thông tin phim trường rải rác, gom về <span class="hl">một Slate</span>.<br>Những gì còn lại trở thành <span class="hl">sự nghiệp</span> của bạn.`,
+    hero_sub: `Nền tảng cộng tác sản xuất kết nối danh sách cảnh, lịch quay, địa điểm và đoàn phim theo thời gian thực — và lưu giữ mọi ghi chép thành danh sách phim tham gia / filmography của bạn ngay cả sau khi đóng máy. Gặp gỡ ê-kíp cho dự án tiếp theo qua bảng tuyển dụng theo quốc gia và SlateTalk.`,
+    hero_cta_start: `Bắt đầu ngay`,
+    hero_cta_explore: `Khám phá tính năng`,
+    ref_title: `🎁 Mã giới thiệu chào mừng`,
+    ref_desc: `Nhập mã này khi đăng ký để nhận <b>10,000 điểm</b> — dùng sau này để mở hoặc gia hạn thẻ dự án.`,
+    ref_sub: `Nếu đã có người giới thiệu bạn, hãy nhập mã của họ — cả hai bên mỗi người nhận 10,000 điểm. (Tự động ghi có sau khi xác minh số điện thoại hoàn tất.)`,
+    hero_note: `Thêm vào màn hình chính của điện thoại, không cần cài ứng dụng · Kakao·Naver·TMAP (Hàn Quốc) / Google Maps (nước ngoài) tự động liên kết`,
+    copy_btn: `Sao chép`,
+    copied_btn: `Đã sao chép ✓`,
+    why_h2: `Phim trường vẫn chạy bằng ứng dụng nhắn tin, bảng tính và giấy tờ`,
+    why_lead: `Các phiên bản xung đột, thay đổi thứ tự không đến được với mọi người, và bạn phải tra cứu địa điểm cùng thời tiết hết lần này đến lần khác. Slate gom tất cả về một màn hình.`,
+    p1_q: `😵 Danh sách cảnh và lịch quay rải rác khắp nơi`,
+    p1_a: `<b>Đồng bộ thời gian thực</b> trên một nền tảng · tự động phản ánh cho mọi đội`,
+    p2_q: `🔁 Không thể thông báo đổi thứ tự hay OMIT tại hiện trường`,
+    p2_a: `Bắt đầu/kết thúc · OMIT · đổi thứ tự · thêm cảnh, tất cả <b>trực tiếp cho mọi đội</b>`,
+    p3_q: `📍 Chia sẻ địa điểm và chỉ đường thật phiền phức`,
+    p3_a: `Chạm một lần vào địa chỉ để mở <b>chỉ đường</b> · <b>lộ trình lái xe</b> cho các địa điểm đã chọn`,
+    p4_q: `🌧️ Thời tiết phá hỏng buổi quay`,
+    p4_a: `<b>Dự báo rủi ro quay 15 ngày</b> hiển thị dạng huy hiệu trên ghim bản đồ và danh sách địa điểm`,
+    p5_q: `🧑‍🤝‍🧑 Không biết tìm ê-kíp hay đội nhóm ở đâu khi gấp`,
+    p5_a: `<b>Bảng tuyển dụng theo quốc gia</b> · ứng tuyển bằng hồ sơ ngay trong ứng dụng · <b>SlateTalk</b> liên hệ 1:1`,
+    p6_q: `📇 Không có cách lọc bỏ thành tích hồ sơ giả`,
+    p6_a: `Filmography của Slate là ghi chép chỉ được lưu <b>khi thực sự tham gia dự án</b> — <b>thành tích giả đơn giản là không thể</b>`,
+    feat_h2: `Quy trình sản xuất thực tế, chỉ những tính năng bạn cần`,
+    f1_t: `Danh sách cảnh`,
+    f1_d: `Bảng cảnh kiểu AD (bản gốc + bản sao cho từng đội). Ngày/giờ, nhân vật, mỹ thuật, cột phục trang/hóa trang và hơn thế nữa.`,
+    f2_t: `Lịch quay`,
+    f2_d: `Lập kế hoạch cảnh theo từng ngày, đổi thứ tự và bổ sung, cùng danh bạ nhân sự (chạm để gọi) — một lịch quay đích thực. Xuất ra PDF·Excel, bố cục sẵn sàng in.`,
+    f3_t: `Tiến độ tại hiện trường`,
+    f3_d: `Dấu thời gian bắt đầu/kết thúc và OMIT, được người dùng có quyền cập nhật trực tiếp. Phản ánh tức thì cho mọi đội.`,
+    f4_t: `Địa điểm & Lộ trình`,
+    f4_d: `Tìm địa chỉ → tự động đặt ghim, gán cảnh cho địa điểm, lộ trình lái xe, chạm vào địa chỉ để chỉ đường.`,
+    f5_t: `Rủi ro thời tiết`,
+    f5_d: `Dự báo 15 ngày dựa trên tọa độ. Hàn Quốc bổ sung dự báo chính xác của KMA, đánh dấu những ngày rủi ro trên ghim và danh sách.`,
+    f6_t: `Filmography`,
+    f6_d: `Ghi chép được lưu giữ và xem lại sau khi đóng máy. Biến sự nghiệp của bạn thành tài sản với album poster cá nhân — bằng chứng kinh nghiệm khi tìm việc.`,
+    f7_t: `Bảng tuyển dụng`,
+    f7_d: `Tuyển dụng và tìm việc cho ê-kíp phim, truyền hình và quảng cáo trên bảng theo quốc gia. Danh mục và bộ lọc theo loại hiện trường/đội, ứng tuyển bằng hồ sơ (PDF·Word) ngay trong ứng dụng — chỉ người đăng thấy được. Filmography của người tìm việc <b style="color:var(--gold)">chỉ được xây dựng từ sự tham gia thực tế</b>, nên không có thành tích giả.`,
+    f8_t: `SlateTalk`,
+    f8_d: `Trình nhắn tin 1:1 tích hợp sẵn. Liên hệ trực tiếp người đăng và ứng viên, trao đổi ngay cả khi ẩn số điện thoại. Tin nhắn mới đến dạng thông báo đẩy.`,
+    f9_t: `Ảnh continuity, thẳng tới đúng cảnh`,
+    f9_d: `Không còn cảnh chụp ảnh rồi sau đó phải mò tìm số cảnh và diễn viên. Tạo thư mục nhân vật, đạo cụ và địa điểm cho từng cảnh trong danh sách cảnh, rồi lưu·ghi ngay tại chỗ khi đang quay. <b style="color:var(--gold)">Nhân bản thư mục</b> để xử lý cùng lúc các tư liệu continuity lặp lại.`,
+    how_h2: `Một mã mời, một màn hình cho cả đội`,
+    s1_t: `Mở dự án`,
+    s1_d: `Tạo thẻ dự án và xây dựng các đội của bạn.`,
+    s2_t: `Tham gia bằng mã`,
+    s2_d: `Ê-kíp tham gia bằng mã và đăng ký chức danh (Trưởng nhóm Hóa trang, Line PD, v.v.) → tab thành viên trở thành danh sách ê-kíp của bạn.`,
+    s3_t: `Công bố danh sách cảnh & lịch quay`,
+    s3_d: `Đội đạo diễn quản lý bản gốc; mỗi đội kiểm tra theo thời gian thực.`,
+    s4_t: `Vận hành & ghi chép hiện trường`,
+    s4_d: `Tiến độ, lộ trình, thời tiết và tư liệu ở cùng một nơi — thành filmography khi đóng máy.`,
+    band1_n: `Thời gian thực`,
+    band1_l: `Đồng bộ dựa trên quyền của đội (Firestore)`,
+    band2_n: `Hàn Quốc & nước ngoài`,
+    band2_l: `Bản đồ·chỉ đường tự động phân nhánh theo quốc gia đăng ký`,
+    band3_n: `PWA cài đặt được`,
+    band3_l: `Cài vào màn hình chính không cần app store · ngoại tuyến`,
+    price_h2: `Chọn quy mô phù hợp`,
+    price_lead: `Đăng ký hàng tháng (một mức giá đã bao gồm VAT) · hủy bất cứ lúc nào. Hiện đang là giai đoạn dùng thử miễn phí — trải nghiệm mọi gói với chi phí bằng không. Bảng tuyển dụng và SlateTalk <b style="color:var(--gold)">miễn phí chỉ với việc đăng ký</b>.`,
+    pl1_name: `Basic`,
+    pl1_desc: `Xem và tải xuống filmography. Bắt đầu từ chính ghi chép sự nghiệp của bạn.`,
+    pl1_who: `Cá nhân · xem`,
+    pl2_name: `Solo`,
+    pl2_desc: `Không gian làm việc solo. Quản lý danh sách cảnh và lịch quay của riêng bạn.`,
+    pl2_who: `Làm việc solo`,
+    pl3_name: `Team`,
+    pl3_desc: `Làm việc chung cho một đội duy nhất. Tốt nhất cho cộng tác cấp bộ phận.`,
+    pl3_who: `Một đội`,
+    pl4_name: `Work`,
+    pl4_desc: `Cộng tác toàn bộ đoàn phim (nhiều đội). Đầy đủ tính năng: địa điểm, lộ trình, thời tiết và hơn thế nữa.`,
+    pl4_who: `Toàn ê-kíp`,
+    final_h2: `Mọi khoảnh khắc của buổi quay, trên một Slate.`,
+    final_lead: `Mở dự án ngay và mời cả đội của bạn.`,
+    final_cta_start: `Bắt đầu miễn phí`,
+    final_cta_contact: `Liên hệ chúng tôi`,
+    tag1: `"Từ danh sách cảnh đến filmography — <b>kết nối phim trường</b>."`,
+    tag2: `"Thông tin phim trường rải rác thành thời gian thực, <b>những gì còn lại trở thành sự nghiệp của bạn</b>."`,
+    footer: `© SlateSync — Nền tảng cộng tác phim trường · Liên hệ: Youngjin Park +82 10-2240-8110 · <a href="https://slatesync-1fe39.web.app" target="_blank" rel="noopener" style="color:var(--gold)">slatesync-1fe39.web.app</a>`,
+  },
+};
+
+const LANGS = [
+  ['ko','한국어'],['en','English'],['ja','日本語'],['zh','中文(简体)'],
+  ['es','Español'],['fr','Français'],['de','Deutsch'],['pt','Português'],
+  ['id','Bahasa Indonesia'],['vi','Tiếng Việt'],
+];
+
+let T = I18N.en;
+
+function applyLang(code){
+  const dict = I18N[code] || I18N.en;
+  T = dict;
+  document.documentElement.lang = code;
+  if (dict.title) document.title = dict.title;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    const k = el.getAttribute('data-i18n');
+    if (dict[k] != null) el.innerHTML = dict[k];
+  });
+  try { localStorage.setItem('slate.lang', code); } catch(e){}
+  const sel = document.getElementById('langsel');
+  if (sel) sel.value = code;
+}
+
+function detectLang(){
+  try { const s = localStorage.getItem('slate.lang'); if (s && I18N[s]) return s; } catch(e){}
+  const list = navigator.languages || [navigator.language || 'en'];
+  for (const l of list){
+    const p = String(l).toLowerCase().split('-')[0];
+    if (I18N[p]) return p;
+  }
+  return 'en';
+}
+
+function copyRef(btn){
+  navigator.clipboard.writeText('73Q2RR').then(function(){
+    btn.textContent = T.copied_btn;
+    setTimeout(function(){ btn.textContent = T.copy_btn; }, 1500);
+  });
+}
+
+(function(){
+  const sel = document.getElementById('langsel');
+  LANGS.forEach(function(pair){
+    if (!I18N[pair[0]]) return; // 아직 번역이 없는 언어는 목록에서 숨김
+    const o = document.createElement('option');
+    o.value = pair[0]; o.textContent = pair[1];
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', function(e){ applyLang(e.target.value); });
+  applyLang(detectLang());
+})();
+</script>
 
 </body>
 </html>
