@@ -1136,7 +1136,8 @@ function detectLang(){
 }
 
 function copyRef(btn){
-  navigator.clipboard.writeText('73Q2RR').then(function(){
+  // 표시 중인 코드를 그대로 복사 — ?ref= 링크로 들어온 경우 공유자의 코드가 표시돼 있다
+  navigator.clipboard.writeText(document.getElementById('refcode').textContent.trim()).then(function(){
     btn.textContent = T.copied_btn;
     setTimeout(function(){ btn.textContent = T.copy_btn; }, 1500);
   });
@@ -1152,6 +1153,20 @@ function copyRef(btn){
   });
   sel.addEventListener('change', function(e){ applyLang(e.target.value); });
   applyLang(detectLang());
+
+  // 추천인 링크(?ref=CODE) — 표시 코드를 교체하고 시작하기 CTA에 코드를 이어붙인다.
+  // 앱(main.tsx)이 부팅 시 ?ref= 를 캡처해 가입폼에 자동 입력하므로 클릭만으로 코드가 전달된다.
+  // (applyLang은 [data-i18n] 요소의 innerHTML만 바꾸므로 a의 href와 #refcode는 보존됨)
+  try {
+    const ref = new URLSearchParams(location.search).get('ref') || '';
+    if (/^[a-zA-Z0-9]{6}$/.test(ref)) {
+      const code = ref.toUpperCase();
+      document.getElementById('refcode').textContent = code;
+      document.querySelectorAll('a[data-i18n="hero_cta_start"], a[data-i18n="final_cta_start"]').forEach(function(a){
+        a.href = 'https://slatesync-1fe39.web.app/?ref=' + code;
+      });
+    }
+  } catch(e){}
 })();
 </script>
 
