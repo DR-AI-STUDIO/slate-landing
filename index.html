@@ -90,6 +90,13 @@
     background:var(--goldsoft);border:1px solid var(--line);margin-bottom:14px}
   .feat h3{font-size:17px;font-weight:800;margin-bottom:7px}
   .feat p{color:var(--muted);font-size:14px}
+  /* AI톡 안내 스트립 — 기능 그리드(3×3) 아래 가로 배너 (그리드 균형 유지) */
+  .ainote{margin-top:26px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+    background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line2);
+    border-radius:16px;padding:14px 20px;text-align:center}
+  .ainote img{width:40px;height:40px;border-radius:50%;flex:none}
+  .ainote p{color:var(--muted);font-size:14px;margin:0}
+  .ainote b{color:var(--gold)}
 
   /* HOW */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px;counter-reset:s}
@@ -210,6 +217,8 @@
     <div class="feat"><div class="ico">💬</div><h3 data-i18n="f8_t">슬레이톡</h3><p data-i18n="f8_d">앱 안 1:1 메신저. 게시글·지원자에게 바로 연락, 전화번호 비공개 상태로도 소통. 새 메시지는 푸시로.</p></div>
     <div class="feat"><div class="ico">📸</div><h3 data-i18n="f9_t">연결사진, 찍는 즉시 그 씬에</h3><p data-i18n="f9_d">사진 찍고 나중에 씬 번호·배우를 찾아 정리하던 시간은 이제 그만. 씬리스트 속 씬마다 인물·소품·현장 폴더를 만들고, 촬영 즉시 그 자리에서 저장·기록하세요. <b style="color:var(--gold)">폴더 복제</b>로 반복되는 연결 자료도 한 번에.</p></div>
   </div>
+  <!-- AI톡 안내 — 그리드 밖 가로 스트립이라 3×3 카드 균형을 해치지 않는다 -->
+  <div class="ainote"><img src="ai-talk.png" alt="AI톡"><p data-i18n="ai_note">사용법이 궁금하면 앱 오른쪽 아래 <b>AI톡</b> 버튼에 물어보세요 — 바로 답해드리고, 1:1 문의도 같은 곳에서 받습니다.</p></div>
 </section>
 
 <!-- HOW -->
@@ -290,6 +299,7 @@ const I18N = {
     p6_q: `📇 이력서 허위 경력을 걸러낼 수 없어요`,
     p6_a: `슬레이트 필모그래피는 <b>실제 작품에 참여해야만</b> 남는 기록 — <b>허위 경력이 원천적으로 불가능</b>`,
     feat_h2: `촬영 현업 그대로, 필요한 기능만`,
+    ai_note: `사용법이 궁금하면 앱 오른쪽 아래 <b>AI톡</b> 버튼에 물어보세요 — 바로 답해드리고, 1:1 문의도 같은 곳에서 받습니다.`,
     f1_t: `씬리스트`,
     f1_d: `조감독 관점 씬 정리표(원본+팀별 사본). 시제(Day)·인물·미술·의상/분장 컬럼까지.`,
     f2_t: `촬영계획표`,
@@ -374,6 +384,7 @@ const I18N = {
     p6_q: `📇 No way to filter out fake résumé credits`,
     p6_a: `A Slate filmography is a record kept <b>only by actually joining a project</b> — <b>fake credits are simply impossible</b>`,
     feat_h2: `Real production workflows, only the features you need`,
+    ai_note: `Wondering how something works? Ask the <b>AI Talk</b> button at the bottom-right of the app — instant answers, plus 1:1 inquiries in the same place.`,
     f1_t: `Scene List`,
     f1_d: `An AD-style scene table (master + per-team copies). Day/time, characters, art, costume/makeup columns and more.`,
     f2_t: `Call Sheet`,
@@ -458,6 +469,7 @@ const I18N = {
     p6_q: `📇 履歴書の虚偽経歴を見抜けない`,
     p6_a: `Slateのフィルモグラフィは<b>実際に作品へ参加してこそ</b>残る記録 — <b>虚偽経歴は原理的に不可能</b>`,
     feat_h2: `撮影の現場そのままに、必要な機能だけ`,
+    ai_note: `使い方に迷ったらアプリ右下の<b>AIトーク</b>ボタンに質問 — すぐに回答、1:1のお問い合わせも同じ場所で。`,
     f1_t: `シーンリスト`,
     f1_d: `助監督視点のシーン整理表（オリジナル＋チームごとのコピー）。時制（Day）・登場人物・美術・衣装/メイクのカラムまで。`,
     f2_t: `香盤表`,
@@ -542,6 +554,7 @@ const I18N = {
     p6_q: `📇 无法筛掉简历里的虚假经历`,
     p6_a: `Slate作品经历是<b>只有真正参与作品</b>才会留下的记录 — <b>虚假经历从根本上不可能</b>`,
     feat_h2: `原汁原味的拍摄流程，只留你需要的功能`,
+    ai_note: `想知道怎么用？点应用右下角的<b>AI聊</b>按钮提问 — 即时解答，1:1咨询也在同一处。`,
     f1_t: `场景表`,
     f1_d: `副导演视角的场景整理表（母本＋各团队副本）。含时态（Day）、人物、美术、服装/化妆等栏目。`,
     f2_t: `通告单`,
@@ -626,6 +639,7 @@ const I18N = {
     p6_q: `📇 No hay forma de filtrar créditos falsos en un currículum`,
     p6_a: `Una filmografía de Slate es un registro que se conserva <b>solo al unirte de verdad a un proyecto</b>: los <b>créditos falsos son sencillamente imposibles</b>`,
     feat_h2: `Flujos de trabajo reales de producción, solo las funciones que necesitas`,
+    ai_note: `¿Dudas de uso? Pregunta al botón <b>AI Talk</b> abajo a la derecha de la app — respuestas al instante y consultas 1:1 en el mismo lugar.`,
     f1_t: `Lista de escenas`,
     f1_d: `Una tabla de escenas al estilo del AD (maestra + copias por equipo). Columnas de día/hora, personajes, arte, vestuario/maquillaje y muchas más.`,
     f2_t: `Hoja de rodaje`,
@@ -710,6 +724,7 @@ const I18N = {
     p6_q: `📇 Aucun moyen de filtrer les faux crédits d'un CV`,
     p6_a: `Une filmographie Slate est une trace conservée <b>uniquement en participant réellement à un projet</b> : les <b>faux crédits sont tout simplement impossibles</b>`,
     feat_h2: `De vrais flux de production, seulement les fonctions dont vous avez besoin`,
+    ai_note: `Une question d’utilisation ? Demandez au bouton <b>AI Talk</b> en bas à droite de l’app — réponse immédiate, et demandes 1:1 au même endroit.`,
     f1_t: `Liste de scènes`,
     f1_d: `Un tableau de scènes façon assistant réalisateur (maître + copies par équipe). Colonnes jour/heure, personnages, décor, costume/maquillage et bien d'autres.`,
     f2_t: `Feuille de service`,
@@ -794,6 +809,7 @@ const I18N = {
     p6_q: `📇 Keine Möglichkeit, gefälschte Lebenslauf-Referenzen auszusortieren`,
     p6_a: `Eine Slate-Filmografie ist ein Eintrag, der <b>nur durch echte Projektteilnahme</b> entsteht — <b>gefälschte Referenzen sind schlicht unmöglich</b>`,
     feat_h2: `Echte Produktionsabläufe, nur die Funktionen, die du brauchst`,
+    ai_note: `Fragen zur Nutzung? Einfach den <b>AI Talk</b>-Button unten rechts in der App fragen — sofortige Antworten, 1:1-Anfragen am selben Ort.`,
     f1_t: `Szenenliste`,
     f1_d: `Eine Szenentabelle im Regieassistenz-Stil (Master + Kopien pro Team). Tag/Zeit, Figuren, Ausstattung, Kostüm/Maske und weitere Spalten.`,
     f2_t: `Tagesdispo`,
@@ -878,6 +894,7 @@ const I18N = {
     p6_q: `📇 Sem como filtrar créditos falsos de currículo`,
     p6_a: `Uma filmografia Slate é um registro mantido <b>apenas ao participar de fato de um projeto</b> — <b>créditos falsos são simplesmente impossíveis</b>`,
     feat_h2: `Fluxos de produção reais, só os recursos de que você precisa`,
+    ai_note: `Dúvidas de uso? Pergunte ao botão <b>AI Talk</b> no canto inferior direito do app — respostas na hora e consultas 1:1 no mesmo lugar.`,
     f1_t: `Lista de cenas`,
     f1_d: `Uma tabela de cenas no estilo do assistente de direção (master + cópias por equipe). Dia/hora, personagens, arte, colunas de figurino/maquiagem e mais.`,
     f2_t: `Ordem do dia`,
@@ -962,6 +979,7 @@ const I18N = {
     p6_q: `📇 Tidak ada cara menyaring kredit résumé palsu`,
     p6_a: `Filmografi Slate adalah catatan yang tersimpan <b>hanya dengan benar-benar bergabung dalam proyek</b> — <b>kredit palsu sama sekali mustahil</b>`,
     feat_h2: `Alur kerja produksi nyata, hanya fitur yang Anda butuhkan`,
+    ai_note: `Bingung cara pakainya? Tanya tombol <b>AI Talk</b> di kanan bawah aplikasi — jawaban instan, tanya 1:1 di tempat yang sama.`,
     f1_t: `Daftar Scene`,
     f1_d: `Tabel scene gaya AD (master + salinan per tim). Hari/waktu, karakter, artistik, kolom kostum/riasan, dan lainnya.`,
     f2_t: `Call Sheet`,
@@ -1046,6 +1064,7 @@ const I18N = {
     p6_q: `📇 Không có cách lọc bỏ thành tích hồ sơ giả`,
     p6_a: `Filmography của Slate là ghi chép chỉ được lưu <b>khi thực sự tham gia dự án</b> — <b>thành tích giả đơn giản là không thể</b>`,
     feat_h2: `Quy trình sản xuất thực tế, chỉ những tính năng bạn cần`,
+    ai_note: `Thắc mắc cách dùng? Hỏi nút <b>AI Talk</b> ở góc phải dưới của ứng dụng — trả lời ngay, hỏi đáp 1:1 cùng một chỗ.`,
     f1_t: `Danh sách cảnh`,
     f1_d: `Bảng cảnh kiểu AD (bản gốc + bản sao cho từng đội). Ngày/giờ, nhân vật, mỹ thuật, cột phục trang/hóa trang và hơn thế nữa.`,
     f2_t: `Lịch quay`,
